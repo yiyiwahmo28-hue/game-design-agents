@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "lantern-expedition-baseline",
+  "title": "Lantern Expedition — Baseline",
+  "upgradeCosts": [12, 24, 36],
+  "baseYield": 3,
+  "yieldPerLevel": 3,
+  "actionSeconds": { "gather": 10, "upgrade": 8, "explore": 12 },
+  "exploreCost": 8,
+  "exploreGoal": 8
+}

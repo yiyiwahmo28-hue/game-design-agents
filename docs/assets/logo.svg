@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Game Design Agents">
+  <rect width="96" height="96" rx="25" fill="#152e36"/>
+  <path d="M26 28h43M26 28v41m0 0h43m0 0V28" fill="none" stroke="#7dbbb0" stroke-width="3"/>
+  <path d="m40 34 24 14-24 14z" fill="#b8f575"/>
+  <g fill="#f8faf4"><circle cx="26" cy="28" r="6"/><circle cx="69" cy="28" r="6"/><circle cx="26" cy="69" r="6"/><circle cx="69" cy="69" r="6"/></g>
+</svg>

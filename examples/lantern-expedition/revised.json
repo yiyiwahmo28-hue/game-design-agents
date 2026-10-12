@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "lantern-expedition-revised",
+  "title": "Lantern Expedition — Earlier First Upgrade",
+  "upgradeCosts": [6, 27, 39],
+  "baseYield": 3,
+  "yieldPerLevel": 3,
+  "actionSeconds": { "gather": 10, "upgrade": 8, "explore": 12 },
+  "exploreCost": 8,
+  "exploreGoal": 8
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Game Design Team"
+  short_description: "Turn game briefs into playable, reviewable changes"
+  default_prompt: "Use $game-design-team to turn my game brief into a scoped prototype and review its rules, choices, pacing, and evidence."
