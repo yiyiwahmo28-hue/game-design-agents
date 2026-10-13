@@ -1,0 +1,4156 @@
+{
+  "schemaVersion": 1,
+  "caseId": "signal-camp",
+  "kind": "deterministic-engine-execution",
+  "baseline": {
+    "config": {
+      "schemaVersion": 1,
+      "id": "signal-camp-baseline",
+      "title": "Signal Camp — bundled construction",
+      "titleZh": "信标营地 · 整包建设",
+      "mode": "bundled",
+      "turnLimit": 6,
+      "initialSupplies": 3,
+      "incomePerTurn": 1,
+      "bundleCost": 6,
+      "moduleCosts": {
+        "beacon": 3,
+        "survey-kit": 3
+      },
+      "missions": {
+        "signal": {
+          "module": "beacon",
+          "metric": "people",
+          "cost": 1,
+          "earlyThroughTurn": 2,
+          "earlyValue": 6,
+          "lateValue": 2,
+          "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+          "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+        },
+        "survey": {
+          "module": "survey-kit",
+          "metric": "routes",
+          "cost": 1,
+          "earlyThroughTurn": 2,
+          "earlyValue": 3,
+          "lateValue": 1,
+          "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+          "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+        }
+      },
+      "goals": [
+        {
+          "id": "rescue-priority",
+          "name": "Evacuate the stranded group",
+          "nameZh": "优先接走滞留者",
+          "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+          "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+          "requirements": {
+            "people": 6,
+            "routes": 1
+          }
+        },
+        {
+          "id": "route-priority",
+          "name": "Open routes for the next crew",
+          "nameZh": "优先打通后续路线",
+          "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+          "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+          "requirements": {
+            "people": 2,
+            "routes": 3
+          }
+        }
+      ]
+    },
+    "traces": {
+      "signal-first": {
+        "policy": "signal-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 1,
+            "supplies": 4,
+            "grossIncome": 1,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 2,
+            "supplies": 5,
+            "grossIncome": 2,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 3,
+            "supplies": 6,
+            "grossIncome": 3,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 4,
+            "supplies": 1,
+            "grossIncome": 4,
+            "spent": 6,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal",
+              "survey"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "wait",
+            "turn": 1,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 1,
+              "supplies": 4,
+              "grossIncome": 1,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 2,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 2,
+              "supplies": 5,
+              "grossIncome": 2,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 3,
+              "supplies": 6,
+              "grossIncome": 3,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:bundle",
+            "turn": 4,
+            "cost": 6,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 4,
+              "supplies": 1,
+              "grossIncome": 4,
+              "spent": 6,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 5,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 2,
+            "metric": "people",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 1,
+            "metric": "routes",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal",
+                "survey"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-baseline",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 5,
+              "value": 2,
+              "early": false
+            },
+            {
+              "id": "survey",
+              "turn": 6,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 2,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 2,
+          "routes": 1,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            1,
+            2,
+            3
+          ],
+          "firstBuildTurn": 4,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        }
+      },
+      "survey-first": {
+        "policy": "survey-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 1,
+            "supplies": 4,
+            "grossIncome": 1,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 2,
+            "supplies": 5,
+            "grossIncome": 2,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 3,
+            "supplies": 6,
+            "grossIncome": 3,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 4,
+            "supplies": 1,
+            "grossIncome": 4,
+            "spent": 6,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 5,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 0,
+            "routes": 1,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "survey"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 5,
+                "value": 1,
+                "early": false
+              },
+              {
+                "id": "signal",
+                "turn": 6,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "survey",
+              "signal"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "wait",
+            "turn": 1,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 1,
+              "supplies": 4,
+              "grossIncome": 1,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 2,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 2,
+              "supplies": 5,
+              "grossIncome": 2,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 3,
+              "supplies": 6,
+              "grossIncome": 3,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:bundle",
+            "turn": 4,
+            "cost": 6,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 4,
+              "supplies": 1,
+              "grossIncome": 4,
+              "spent": 6,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 5,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 1,
+            "metric": "routes",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 5,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 0,
+              "routes": 1,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "survey"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 2,
+            "metric": "people",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 5,
+                  "value": 1,
+                  "early": false
+                },
+                {
+                  "id": "signal",
+                  "turn": 6,
+                  "value": 2,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "survey",
+                "signal"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-baseline",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "survey",
+              "turn": 5,
+              "value": 1,
+              "early": false
+            },
+            {
+              "id": "signal",
+              "turn": 6,
+              "value": 2,
+              "early": false
+            }
+          ],
+          "people": 2,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "survey",
+            "signal"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 2,
+          "routes": 1,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            1,
+            2,
+            3
+          ],
+          "firstBuildTurn": 4,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        }
+      },
+      "bundle-first": {
+        "policy": "bundle-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 1,
+            "supplies": 4,
+            "grossIncome": 1,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 2,
+            "supplies": 5,
+            "grossIncome": 2,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 3,
+            "supplies": 6,
+            "grossIncome": 3,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 4,
+            "supplies": 1,
+            "grossIncome": 4,
+            "spent": 6,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal"
+            ]
+          },
+          {
+            "configId": "signal-camp-baseline",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal",
+              "survey"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "wait",
+            "turn": 1,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 1,
+              "supplies": 4,
+              "grossIncome": 1,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 2,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 2,
+              "supplies": 5,
+              "grossIncome": 2,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 3,
+              "supplies": 6,
+              "grossIncome": 3,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:bundle",
+            "turn": 4,
+            "cost": 6,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 4,
+              "supplies": 1,
+              "grossIncome": 4,
+              "spent": 6,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 5,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 2,
+            "metric": "people",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 1,
+            "metric": "routes",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-baseline",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal",
+                "survey"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-baseline",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 5,
+              "value": 2,
+              "early": false
+            },
+            {
+              "id": "survey",
+              "turn": 6,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 2,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 2,
+          "routes": 1,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            1,
+            2,
+            3
+          ],
+          "firstBuildTurn": 4,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        }
+      }
+    },
+    "analysis": {
+      "reachableStates": 15,
+      "terminalStates": 5,
+      "transitions": 19,
+      "terminalOutcomes": [
+        {
+          "people": 2,
+          "routes": 1,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 2,
+          "routes": 0,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 0,
+          "routes": 1,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "survey",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 0,
+          "routes": 0,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "wait",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 6,
+          "balance": 3
+        }
+      ],
+      "paretoFrontier": [
+        {
+          "people": 2,
+          "routes": 1,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        }
+      ],
+      "goals": [
+        {
+          "id": "rescue-priority",
+          "achievable": false,
+          "witness": null
+        },
+        {
+          "id": "route-priority",
+          "achievable": false,
+          "witness": null
+        }
+      ],
+      "firstActions": [
+        {
+          "id": "wait",
+          "paretoFrontier": [
+            {
+              "people": 2,
+              "routes": 1,
+              "witness": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal",
+                "survey"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": false,
+              "witness": null
+            },
+            {
+              "id": "route-priority",
+              "achievable": false,
+              "witness": null
+            }
+          ]
+        }
+      ],
+      "assumptions": [
+        "All legal action sequences run to the same fixed horizon; no task completion ends the session early.",
+        "People and routes are separate outcomes, not supplies or a weighted score.",
+        "Equivalent current states are merged; witnesses remain complete legal histories.",
+        "This deterministic search proves reachable outcomes, not player comprehension or enjoyment."
+      ]
+    }
+  },
+  "revised": {
+    "config": {
+      "schemaVersion": 1,
+      "id": "signal-camp-revised",
+      "title": "Signal Camp — modular construction",
+      "titleZh": "信标营地 · 分步建设",
+      "mode": "modular",
+      "turnLimit": 6,
+      "initialSupplies": 3,
+      "incomePerTurn": 1,
+      "bundleCost": 6,
+      "moduleCosts": {
+        "beacon": 3,
+        "survey-kit": 3
+      },
+      "missions": {
+        "signal": {
+          "module": "beacon",
+          "metric": "people",
+          "cost": 1,
+          "earlyThroughTurn": 2,
+          "earlyValue": 6,
+          "lateValue": 2,
+          "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+          "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+        },
+        "survey": {
+          "module": "survey-kit",
+          "metric": "routes",
+          "cost": 1,
+          "earlyThroughTurn": 2,
+          "earlyValue": 3,
+          "lateValue": 1,
+          "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+          "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+        }
+      },
+      "goals": [
+        {
+          "id": "rescue-priority",
+          "name": "Evacuate the stranded group",
+          "nameZh": "优先接走滞留者",
+          "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+          "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+          "requirements": {
+            "people": 6,
+            "routes": 1
+          }
+        },
+        {
+          "id": "route-priority",
+          "name": "Open routes for the next crew",
+          "nameZh": "优先打通后续路线",
+          "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+          "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+          "requirements": {
+            "people": 2,
+            "routes": 3
+          }
+        }
+      ]
+    },
+    "traces": {
+      "signal-first": {
+        "policy": "signal-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-revised",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 1,
+            "supplies": 1,
+            "grossIncome": 1,
+            "spent": 3,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 1,
+            "grossIncome": 2,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              }
+            ],
+            "people": 6,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "signal"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 2,
+            "grossIncome": 3,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              }
+            ],
+            "people": 6,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 4,
+            "supplies": 3,
+            "grossIncome": 4,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              }
+            ],
+            "people": 6,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              }
+            ],
+            "people": 6,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait",
+              "wait",
+              "build:survey-kit"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 6,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait",
+              "wait",
+              "build:survey-kit",
+              "survey"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "build:beacon",
+            "turn": 1,
+            "cost": 3,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 1,
+              "supplies": 1,
+              "grossIncome": 1,
+              "spent": 3,
+              "modules": [
+                "beacon"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:beacon"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 2,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 6,
+            "metric": "people",
+            "early": true,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 2,
+              "supplies": 1,
+              "grossIncome": 2,
+              "spent": 4,
+              "modules": [
+                "beacon"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                }
+              ],
+              "people": 6,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:beacon",
+                "signal"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 3,
+              "supplies": 2,
+              "grossIncome": 3,
+              "spent": 4,
+              "modules": [
+                "beacon"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                }
+              ],
+              "people": 6,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:beacon",
+                "signal",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 4,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 4,
+              "supplies": 3,
+              "grossIncome": 4,
+              "spent": 4,
+              "modules": [
+                "beacon"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                }
+              ],
+              "people": 6,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:survey-kit",
+            "turn": 5,
+            "cost": 3,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                }
+              ],
+              "people": 6,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 1,
+            "metric": "routes",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 6,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-revised",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 2,
+              "value": 6,
+              "early": true
+            },
+            {
+              "id": "survey",
+              "turn": 6,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 6,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 6,
+          "routes": 1,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            3,
+            4
+          ],
+          "firstBuildTurn": 1,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": true,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 0,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        }
+      },
+      "survey-first": {
+        "policy": "survey-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-revised",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 1,
+            "supplies": 1,
+            "grossIncome": 1,
+            "spent": 3,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:survey-kit"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 1,
+            "grossIncome": 2,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 2,
+            "grossIncome": 3,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 4,
+            "supplies": 3,
+            "grossIncome": 4,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey",
+              "wait",
+              "wait",
+              "build:beacon"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              },
+              {
+                "id": "signal",
+                "turn": 6,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 3,
+            "ended": true,
+            "actions": [
+              "build:survey-kit",
+              "survey",
+              "wait",
+              "wait",
+              "build:beacon",
+              "signal"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "build:survey-kit",
+            "turn": 1,
+            "cost": 3,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 1,
+              "supplies": 1,
+              "grossIncome": 1,
+              "spent": 3,
+              "modules": [
+                "survey-kit"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "build:survey-kit"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 2,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 3,
+            "metric": "routes",
+            "early": true,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 2,
+              "supplies": 1,
+              "grossIncome": 2,
+              "spent": 4,
+              "modules": [
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 2,
+                  "value": 3,
+                  "early": true
+                }
+              ],
+              "people": 0,
+              "routes": 3,
+              "ended": false,
+              "actions": [
+                "build:survey-kit",
+                "survey"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 3,
+              "supplies": 2,
+              "grossIncome": 3,
+              "spent": 4,
+              "modules": [
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 2,
+                  "value": 3,
+                  "early": true
+                }
+              ],
+              "people": 0,
+              "routes": 3,
+              "ended": false,
+              "actions": [
+                "build:survey-kit",
+                "survey",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 4,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 4,
+              "supplies": 3,
+              "grossIncome": 4,
+              "spent": 4,
+              "modules": [
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 2,
+                  "value": 3,
+                  "early": true
+                }
+              ],
+              "people": 0,
+              "routes": 3,
+              "ended": false,
+              "actions": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:beacon",
+            "turn": 5,
+            "cost": 3,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 2,
+                  "value": 3,
+                  "early": true
+                }
+              ],
+              "people": 0,
+              "routes": 3,
+              "ended": false,
+              "actions": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 2,
+            "metric": "people",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "survey",
+                  "turn": 2,
+                  "value": 3,
+                  "early": true
+                },
+                {
+                  "id": "signal",
+                  "turn": 6,
+                  "value": 2,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 3,
+              "ended": true,
+              "actions": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon",
+                "signal"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-revised",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "survey",
+              "turn": 2,
+              "value": 3,
+              "early": true
+            },
+            {
+              "id": "signal",
+              "turn": 6,
+              "value": 2,
+              "early": false
+            }
+          ],
+          "people": 2,
+          "routes": 3,
+          "ended": true,
+          "actions": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "signal"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 2,
+          "routes": 3,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            3,
+            4
+          ],
+          "firstBuildTurn": 1,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": true,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 0
+              }
+            }
+          ]
+        }
+      },
+      "bundle-first": {
+        "policy": "bundle-first",
+        "trajectory": [
+          {
+            "configId": "signal-camp-revised",
+            "turn": 0,
+            "supplies": 3,
+            "grossIncome": 0,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": []
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 1,
+            "supplies": 4,
+            "grossIncome": 1,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 5,
+            "grossIncome": 2,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 6,
+            "grossIncome": 3,
+            "spent": 0,
+            "modules": [],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 4,
+            "supplies": 1,
+            "grossIncome": 4,
+            "spent": 6,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [],
+            "people": 0,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 5,
+            "supplies": 1,
+            "grossIncome": 5,
+            "spent": 7,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal"
+            ]
+          },
+          {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal",
+              "survey"
+            ]
+          }
+        ],
+        "trace": [
+          {
+            "action": "wait",
+            "turn": 1,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 1,
+              "supplies": 4,
+              "grossIncome": 1,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 2,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 2,
+              "supplies": 5,
+              "grossIncome": 2,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "wait",
+            "turn": 3,
+            "cost": 0,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 3,
+              "supplies": 6,
+              "grossIncome": 3,
+              "spent": 0,
+              "modules": [],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait"
+              ]
+            }
+          },
+          {
+            "action": "build:bundle",
+            "turn": 4,
+            "cost": 6,
+            "income": 1,
+            "missionValue": 0,
+            "metric": null,
+            "early": null,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 4,
+              "supplies": 1,
+              "grossIncome": 4,
+              "spent": 6,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [],
+              "people": 0,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle"
+              ]
+            }
+          },
+          {
+            "action": "signal",
+            "turn": 5,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 2,
+            "metric": "people",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 5,
+              "supplies": 1,
+              "grossIncome": 5,
+              "spent": 7,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 0,
+              "ended": false,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal"
+              ]
+            }
+          },
+          {
+            "action": "survey",
+            "turn": 6,
+            "cost": 1,
+            "income": 1,
+            "missionValue": 1,
+            "metric": "routes",
+            "early": false,
+            "state": {
+              "configId": "signal-camp-revised",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal",
+                "survey"
+              ]
+            }
+          }
+        ],
+        "finalState": {
+          "configId": "signal-camp-revised",
+          "turn": 6,
+          "supplies": 1,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 5,
+              "value": 2,
+              "early": false
+            },
+            {
+              "id": "survey",
+              "turn": 6,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 2,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ]
+        },
+        "summary": {
+          "turns": 6,
+          "people": 2,
+          "routes": 1,
+          "grossIncome": 6,
+          "totalAvailable": 9,
+          "spent": 8,
+          "balance": 1,
+          "waitTurns": [
+            1,
+            2,
+            3
+          ],
+          "firstBuildTurn": 4,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        }
+      }
+    },
+    "analysis": {
+      "reachableStates": 51,
+      "terminalStates": 15,
+      "transitions": 83,
+      "terminalOutcomes": [
+        {
+          "people": 6,
+          "routes": 1,
+          "witness": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 6,
+          "routes": 0,
+          "witness": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 2,
+          "routes": 3,
+          "witness": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "signal"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 2,
+          "routes": 1,
+          "witness": [
+            "build:beacon",
+            "wait",
+            "signal",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 2,
+          "routes": 0,
+          "witness": [
+            "build:beacon",
+            "wait",
+            "signal",
+            "wait",
+            "build:survey-kit",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 0,
+          "routes": 3,
+          "witness": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 0,
+          "routes": 1,
+          "witness": [
+            "build:beacon",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 7,
+          "balance": 2
+        },
+        {
+          "people": 0,
+          "routes": 0,
+          "witness": [
+            "build:beacon",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "wait",
+            "wait"
+          ],
+          "grossIncome": 6,
+          "spent": 6,
+          "balance": 3
+        }
+      ],
+      "paretoFrontier": [
+        {
+          "people": 6,
+          "routes": 1,
+          "witness": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 2,
+          "routes": 3,
+          "witness": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "signal"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        }
+      ],
+      "goals": [
+        {
+          "id": "rescue-priority",
+          "achievable": true,
+          "witness": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ]
+        },
+        {
+          "id": "route-priority",
+          "achievable": true,
+          "witness": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "signal"
+          ]
+        }
+      ],
+      "firstActions": [
+        {
+          "id": "build:beacon",
+          "paretoFrontier": [
+            {
+              "people": 6,
+              "routes": 1,
+              "witness": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": true,
+              "witness": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ]
+            },
+            {
+              "id": "route-priority",
+              "achievable": false,
+              "witness": null
+            }
+          ]
+        },
+        {
+          "id": "build:survey-kit",
+          "paretoFrontier": [
+            {
+              "people": 2,
+              "routes": 3,
+              "witness": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon",
+                "signal"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": false,
+              "witness": null
+            },
+            {
+              "id": "route-priority",
+              "achievable": true,
+              "witness": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon",
+                "signal"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wait",
+          "paretoFrontier": [
+            {
+              "people": 2,
+              "routes": 1,
+              "witness": [
+                "wait",
+                "build:beacon",
+                "signal",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": false,
+              "witness": null
+            },
+            {
+              "id": "route-priority",
+              "achievable": false,
+              "witness": null
+            }
+          ]
+        }
+      ],
+      "assumptions": [
+        "All legal action sequences run to the same fixed horizon; no task completion ends the session early.",
+        "People and routes are separate outcomes, not supplies or a weighted score.",
+        "Equivalent current states are merged; witnesses remain complete legal histories.",
+        "This deterministic search proves reachable outcomes, not player comprehension or enjoyment."
+      ]
+    }
+  },
+  "comparison": {
+    "horizon": 6,
+    "initialSupplies": 3,
+    "incomePerTurn": 1,
+    "grossIncome": 6,
+    "totalAvailable": 9,
+    "baselineForcedWaitTurns": [
+      1,
+      2,
+      3
+    ],
+    "baselineFirstBuildTurn": 4,
+    "revisedFirstBuildTurn": 1,
+    "revisedWaitTurns": [
+      3,
+      4
+    ],
+    "completedRouteSpending": 8,
+    "completedRouteBalance": 1
+  },
+  "checks": [
+    {
+      "id": "baseline-preserved",
+      "name": "Original baseline retained",
+      "nameZh": "原版快照保持不变",
+      "status": "passed",
+      "description": "Baseline configuration bytes and both executed baseline traces match the record made before writing the revised configuration.",
+      "descriptionZh": "原版配置字节和两条实际轨迹，均与写入改版配置前保存的记录一致。"
+    },
+    {
+      "id": "economic-contract-preserved",
+      "name": "Only construction availability changes",
+      "nameZh": "只改变建设开放方式",
+      "status": "passed",
+      "description": "Initial supplies, income, horizon, all prices, mission windows/outcomes and goal requirements are identical. Only construction availability differs.",
+      "descriptionZh": "初始补给、逐回合到账、总时段、所有价格、任务窗口与结果、目标门槛均相同，只改变整包/分步建设开放方式。"
+    },
+    {
+      "id": "income-at-every-turn",
+      "name": "Same income at every matching turn",
+      "nameZh": "每一回合到账相同",
+      "status": "passed",
+      "description": "All three completed witness routes receive [0,1,2,3,4,5,6] cumulative supplies, spend 8 and finish with 1. Initial supplies are 3; total available is 9.",
+      "descriptionZh": "三条完整对照路线逐时段累计到账均为[0,1,2,3,4,5,6]，花费8、余额1。初始3，含初始总可用9。"
+    },
+    {
+      "id": "forced-wait-and-new-choice",
+      "name": "Three forced waits become a turn-one fork",
+      "nameZh": "前三回合被动等待变为首回合分支",
+      "status": "passed",
+      "description": "Baseline turns 1–3 allow only waiting; construction first opens at turn 4. Revision turn 1 exposes two distinct module routes plus voluntary waiting.",
+      "descriptionZh": "原版第1–3回合只能等待，第4回合首次可建设；改版第1回合开放两条结果不同的模块路线，并保留主动等待。"
+    },
+    {
+      "id": "inclusive-window-boundary",
+      "name": "Turn two counts; turn three is late",
+      "nameZh": "第2回合有效，第3回合已迟",
+      "status": "passed",
+      "description": "Mission effects use the action being executed (turn + 1). Both early windows include turn 2; turn 3 pays the unchanged late outcome.",
+      "descriptionZh": "任务按即将执行的回合turn+1结算；第2回合仍命中早期窗口，第3回合只能获得原有的晚期结果。"
+    },
+    {
+      "id": "goal-dependent-preference",
+      "name": "The preferred module reverses with the goal",
+      "nameZh": "目标变化，优先模块反转",
+      "status": "passed",
+      "description": "Beacon first satisfies 6 people + 1 route; survey kit first satisfies 2 people + 3 routes. The other ordering fails that same hard goal.",
+      "descriptionZh": "信标先行达到6人+1路线；勘测先行达到2人+3路线。目标互换后，同一路线不再达标。"
+    },
+    {
+      "id": "all-futures-not-cherry-picked",
+      "name": "Search every legal future",
+      "nameZh": "穷举全部合法未来",
+      "status": "passed",
+      "description": "The reachable frontier is (6 people,1 route) or (2 people,3 routes). No legal sequence attains both high outcomes; only its matching first module can attain each hard goal.",
+      "descriptionZh": "可达前沿只有(6人,1路线)和(2人,3路线)；没有合法序列同时拿到两种高结果。每个硬目标只能从对应的首回合模块达到。"
+    },
+    {
+      "id": "waiting-and-build-cost-disclosed",
+      "name": "Waiting remains and construction takes another action",
+      "nameZh": "等待仍在，建设多占一次行动",
+      "status": "passed",
+      "description": "The modular witnesses still wait on turns 3 and 4 and spend two construction actions instead of one. They move a consequential choice earlier; they do not remove all waiting.",
+      "descriptionZh": "改版对照路线第3、4回合仍等待，建设从一次变为两次。它把有后果的选择前移，并没有消除所有等待。"
+    },
+    {
+      "id": "retained-bundle-is-not-a-third-winner",
+      "name": "The retained bundle misses both early goals",
+      "nameZh": "保留整包无法赶上两个早期目标",
+      "status": "passed",
+      "description": "The retained bundle and a turn-one wait cannot reach either stated goal. They are convenience/comparison options, not a claimed third competitive strategy.",
+      "descriptionZh": "保留整包或首回合先等待，都无法达到任一既定目标。它们是对照/便捷选项，不能称为第三条同样有效的策略。"
+    },
+    {
+      "id": "whole-state-legal-conservation",
+      "name": "Conservation and previews hold in every reachable state",
+      "nameZh": "所有可达状态收支与预览一致",
+      "status": "passed",
+      "description": "Every reachable state balances initial + gross income − spending. Every legal action matches its preview, and all rejected actions preserve state and receive no delivery.",
+      "descriptionZh": "所有可达状态都满足初始+毛收入−支出=余额。每个合法动作与预览一致；拒绝动作不改变状态，也不额外到账。"
+    },
+    {
+      "id": "last-turn-and-no-early-stop",
+      "name": "The horizon is fixed even after task completion",
+      "nameZh": "任务完成后仍保持固定时长",
+      "status": "passed",
+      "description": "A labeled high-starting-supply boundary fixture completes tasks at turn 3 but continues to turn 6. Final-turn mission effects and delivery resolve before closure; no seventh action runs.",
+      "descriptionZh": "标注的高初始补给边界测试在第3回合完成任务仍继续到第6回合。最后一回合先结算任务和到账再关闭，不允许第7次行动。"
+    },
+    {
+      "id": "partial-buy-and-repeat-protection",
+      "name": "No duplicate purchases or repeat rewards",
+      "nameZh": "不能重复建设或刷任务结果",
+      "status": "passed",
+      "description": "A labeled high-supply boundary fixture cannot buy the same module, rebuy the whole bundle after a partial build, or repeat a completed mission.",
+      "descriptionZh": "标注的高补给边界测试不能重买已有模块、部分建设后再买整包，或重复执行已完成任务。"
+    }
+  ],
+  "executions": {
+    "baseline-preserved": {
+      "description": "Baseline configuration bytes and both executed baseline traces match the record made before writing the revised configuration.",
+      "descriptionZh": "原版配置字节和两条实际轨迹，均与写入改版配置前保存的记录一致。",
+      "sha256": "1311086215dd2e785a22786d366842453e630139c9cd1fb163163d2afdfb80ec"
+    },
+    "economic-contract-preserved": {
+      "description": "Initial supplies, income, horizon, all prices, mission windows/outcomes and goal requirements are identical. Only construction availability differs.",
+      "descriptionZh": "初始补给、逐回合到账、总时段、所有价格、任务窗口与结果、目标门槛均相同，只改变整包/分步建设开放方式。",
+      "parameters": {
+        "schemaVersion": 1,
+        "turnLimit": 6,
+        "initialSupplies": 3,
+        "incomePerTurn": 1,
+        "bundleCost": 6,
+        "moduleCosts": {
+          "beacon": 3,
+          "survey-kit": 3
+        },
+        "missions": {
+          "signal": {
+            "module": "beacon",
+            "metric": "people",
+            "cost": 1,
+            "earlyThroughTurn": 2,
+            "earlyValue": 6,
+            "lateValue": 2,
+            "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+            "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+          },
+          "survey": {
+            "module": "survey-kit",
+            "metric": "routes",
+            "cost": 1,
+            "earlyThroughTurn": 2,
+            "earlyValue": 3,
+            "lateValue": 1,
+            "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+            "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+          }
+        },
+        "goals": [
+          {
+            "id": "rescue-priority",
+            "name": "Evacuate the stranded group",
+            "nameZh": "优先接走滞留者",
+            "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+            "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+            "requirements": {
+              "people": 6,
+              "routes": 1
+            }
+          },
+          {
+            "id": "route-priority",
+            "name": "Open routes for the next crew",
+            "nameZh": "优先打通后续路线",
+            "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+            "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+            "requirements": {
+              "people": 2,
+              "routes": 3
+            }
+          }
+        ]
+      }
+    },
+    "income-at-every-turn": {
+      "description": "All three completed witness routes receive [0,1,2,3,4,5,6] cumulative supplies, spend 8 and finish with 1. Initial supplies are 3; total available is 9.",
+      "descriptionZh": "三条完整对照路线逐时段累计到账均为[0,1,2,3,4,5,6]，花费8、余额1。初始3，含初始总可用9。",
+      "ledgers": [
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      ]
+    },
+    "forced-wait-and-new-choice": {
+      "description": "Baseline turns 1–3 allow only waiting; construction first opens at turn 4. Revision turn 1 exposes two distinct module routes plus voluntary waiting.",
+      "descriptionZh": "原版第1–3回合只能等待，第4回合首次可建设；改版第1回合开放两条结果不同的模块路线，并保留主动等待。",
+      "availability": [
+        {
+          "turn": 1,
+          "legal": [
+            "wait"
+          ]
+        },
+        {
+          "turn": 2,
+          "legal": [
+            "wait"
+          ]
+        },
+        {
+          "turn": 3,
+          "legal": [
+            "wait"
+          ]
+        }
+      ],
+      "revisedInitial": [
+        "build:beacon",
+        "build:survey-kit",
+        "wait"
+      ]
+    },
+    "inclusive-window-boundary": {
+      "description": "Mission effects use the action being executed (turn + 1). Both early windows include turn 2; turn 3 pays the unchanged late outcome.",
+      "descriptionZh": "任务按即将执行的回合turn+1结算；第2回合仍命中早期窗口，第3回合只能获得原有的晚期结果。",
+      "scenarios": [
+        {
+          "mission": "signal",
+          "early": {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 1,
+            "grossIncome": 2,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              }
+            ],
+            "people": 6,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "signal"
+            ]
+          },
+          "late": {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 2,
+            "grossIncome": 3,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 3,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "wait",
+              "signal"
+            ]
+          }
+        },
+        {
+          "mission": "survey",
+          "early": {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 1,
+            "grossIncome": 2,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey"
+            ]
+          },
+          "late": {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 2,
+            "grossIncome": 3,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 3,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 0,
+            "routes": 1,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "wait",
+              "survey"
+            ]
+          }
+        }
+      ]
+    },
+    "goal-dependent-preference": {
+      "description": "Beacon first satisfies 6 people + 1 route; survey kit first satisfies 2 people + 3 routes. The other ordering fails that same hard goal.",
+      "descriptionZh": "信标先行达到6人+1路线；勘测先行达到2人+3路线。目标互换后，同一路线不再达标。",
+      "matrix": [
+        {
+          "policy": "signal-first",
+          "people": 6,
+          "routes": 1,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": true,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 0,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": false,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 2
+              }
+            }
+          ]
+        },
+        {
+          "policy": "survey-first",
+          "people": 2,
+          "routes": 3,
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "met": false,
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              },
+              "missing": {
+                "people": 4,
+                "routes": 0
+              }
+            },
+            {
+              "id": "route-priority",
+              "met": true,
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              },
+              "missing": {
+                "people": 0,
+                "routes": 0
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "all-futures-not-cherry-picked": {
+      "description": "The reachable frontier is (6 people,1 route) or (2 people,3 routes). No legal sequence attains both high outcomes; only its matching first module can attain each hard goal.",
+      "descriptionZh": "可达前沿只有(6人,1路线)和(2人,3路线)；没有合法序列同时拿到两种高结果。每个硬目标只能从对应的首回合模块达到。",
+      "firstActions": [
+        {
+          "id": "build:beacon",
+          "paretoFrontier": [
+            {
+              "people": 6,
+              "routes": 1,
+              "witness": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": true,
+              "witness": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ]
+            },
+            {
+              "id": "route-priority",
+              "achievable": false,
+              "witness": null
+            }
+          ]
+        },
+        {
+          "id": "build:survey-kit",
+          "paretoFrontier": [
+            {
+              "people": 2,
+              "routes": 3,
+              "witness": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon",
+                "signal"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": false,
+              "witness": null
+            },
+            {
+              "id": "route-priority",
+              "achievable": true,
+              "witness": [
+                "build:survey-kit",
+                "survey",
+                "wait",
+                "wait",
+                "build:beacon",
+                "signal"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "wait",
+          "paretoFrontier": [
+            {
+              "people": 2,
+              "routes": 1,
+              "witness": [
+                "wait",
+                "build:beacon",
+                "signal",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ],
+              "grossIncome": 6,
+              "spent": 8,
+              "balance": 1
+            }
+          ],
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "achievable": false,
+              "witness": null
+            },
+            {
+              "id": "route-priority",
+              "achievable": false,
+              "witness": null
+            }
+          ]
+        }
+      ],
+      "baselineFrontier": [
+        {
+          "people": 2,
+          "routes": 1,
+          "witness": [
+            "wait",
+            "wait",
+            "wait",
+            "build:bundle",
+            "signal",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        }
+      ],
+      "revisedFrontier": [
+        {
+          "people": 6,
+          "routes": 1,
+          "witness": [
+            "build:beacon",
+            "signal",
+            "wait",
+            "wait",
+            "build:survey-kit",
+            "survey"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        },
+        {
+          "people": 2,
+          "routes": 3,
+          "witness": [
+            "build:survey-kit",
+            "survey",
+            "wait",
+            "wait",
+            "build:beacon",
+            "signal"
+          ],
+          "grossIncome": 6,
+          "spent": 8,
+          "balance": 1
+        }
+      ]
+    },
+    "waiting-and-build-cost-disclosed": {
+      "description": "The modular witnesses still wait on turns 3 and 4 and spend two construction actions instead of one. They move a consequential choice earlier; they do not remove all waiting.",
+      "descriptionZh": "改版对照路线第3、4回合仍等待，建设从一次变为两次。它把有后果的选择前移，并没有消除所有等待。",
+      "counts": [
+        {
+          "policy": "signal-first",
+          "waits": [
+            3,
+            4
+          ],
+          "buildActions": 2
+        },
+        {
+          "policy": "survey-first",
+          "waits": [
+            3,
+            4
+          ],
+          "buildActions": 2
+        }
+      ]
+    },
+    "retained-bundle-is-not-a-third-winner": {
+      "description": "The retained bundle and a turn-one wait cannot reach either stated goal. They are convenience/comparison options, not a claimed third competitive strategy.",
+      "descriptionZh": "保留整包或首回合先等待，都无法达到任一既定目标。它们是对照/便捷选项，不能称为第三条同样有效的策略。",
+      "summary": {
+        "turns": 6,
+        "people": 2,
+        "routes": 1,
+        "grossIncome": 6,
+        "totalAvailable": 9,
+        "spent": 8,
+        "balance": 1,
+        "waitTurns": [
+          1,
+          2,
+          3
+        ],
+        "firstBuildTurn": 4,
+        "goals": [
+          {
+            "id": "rescue-priority",
+            "met": false,
+            "requirements": {
+              "people": 6,
+              "routes": 1
+            },
+            "missing": {
+              "people": 4,
+              "routes": 0
+            }
+          },
+          {
+            "id": "route-priority",
+            "met": false,
+            "requirements": {
+              "people": 2,
+              "routes": 3
+            },
+            "missing": {
+              "people": 0,
+              "routes": 2
+            }
+          }
+        ]
+      },
+      "firstWait": {
+        "id": "wait",
+        "paretoFrontier": [
+          {
+            "people": 2,
+            "routes": 1,
+            "witness": [
+              "wait",
+              "build:beacon",
+              "signal",
+              "wait",
+              "build:survey-kit",
+              "survey"
+            ],
+            "grossIncome": 6,
+            "spent": 8,
+            "balance": 1
+          }
+        ],
+        "goals": [
+          {
+            "id": "rescue-priority",
+            "achievable": false,
+            "witness": null
+          },
+          {
+            "id": "route-priority",
+            "achievable": false,
+            "witness": null
+          }
+        ]
+      }
+    },
+    "whole-state-legal-conservation": {
+      "description": "Every reachable state balances initial + gross income − spending. Every legal action matches its preview, and all rejected actions preserve state and receive no delivery.",
+      "descriptionZh": "所有可达状态都满足初始+毛收入−支出=余额。每个合法动作与预览一致；拒绝动作不改变状态，也不额外到账。",
+      "counts": [
+        {
+          "configId": "signal-camp-baseline",
+          "states": 15,
+          "accepted": 19,
+          "rejected": 71
+        },
+        {
+          "configId": "signal-camp-revised",
+          "states": 51,
+          "accepted": 83,
+          "rejected": 223
+        }
+      ]
+    },
+    "last-turn-and-no-early-stop": {
+      "description": "A labeled high-starting-supply boundary fixture completes tasks at turn 3 but continues to turn 6. Final-turn mission effects and delivery resolve before closure; no seventh action runs.",
+      "descriptionZh": "标注的高初始补给边界测试在第3回合完成任务仍继续到第6回合。最后一回合先结算任务和到账再关闭，不允许第7次行动。",
+      "fixture": {
+        "config": {
+          "schemaVersion": 1,
+          "id": "signal-camp-revised",
+          "title": "Signal Camp — modular construction",
+          "titleZh": "信标营地 · 分步建设",
+          "mode": "modular",
+          "turnLimit": 6,
+          "initialSupplies": 20,
+          "incomePerTurn": 1,
+          "bundleCost": 6,
+          "moduleCosts": {
+            "beacon": 3,
+            "survey-kit": 3
+          },
+          "missions": {
+            "signal": {
+              "module": "beacon",
+              "metric": "people",
+              "cost": 1,
+              "earlyThroughTurn": 2,
+              "earlyValue": 6,
+              "lateValue": 2,
+              "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+              "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+            },
+            "survey": {
+              "module": "survey-kit",
+              "metric": "routes",
+              "cost": 1,
+              "earlyThroughTurn": 2,
+              "earlyValue": 3,
+              "lateValue": 1,
+              "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+              "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+            }
+          },
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "name": "Evacuate the stranded group",
+              "nameZh": "优先接走滞留者",
+              "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+              "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              }
+            },
+            {
+              "id": "route-priority",
+              "name": "Open routes for the next crew",
+              "nameZh": "优先打通后续路线",
+              "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+              "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              }
+            }
+          ]
+        },
+        "complete": {
+          "configId": "signal-camp-revised",
+          "turn": 3,
+          "supplies": 15,
+          "grossIncome": 3,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 2,
+              "value": 6,
+              "early": true
+            },
+            {
+              "id": "survey",
+              "turn": 3,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 6,
+          "routes": 1,
+          "ended": false,
+          "actions": [
+            "build:bundle",
+            "signal",
+            "survey"
+          ]
+        },
+        "final": {
+          "configId": "signal-camp-revised",
+          "turn": 6,
+          "supplies": 18,
+          "grossIncome": 6,
+          "spent": 8,
+          "modules": [
+            "beacon",
+            "survey-kit"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 2,
+              "value": 6,
+              "early": true
+            },
+            {
+              "id": "survey",
+              "turn": 3,
+              "value": 1,
+              "early": false
+            }
+          ],
+          "people": 6,
+          "routes": 1,
+          "ended": true,
+          "actions": [
+            "build:bundle",
+            "signal",
+            "survey",
+            "wait",
+            "wait",
+            "wait"
+          ]
+        }
+      }
+    },
+    "partial-buy-and-repeat-protection": {
+      "description": "A labeled high-supply boundary fixture cannot buy the same module, rebuy the whole bundle after a partial build, or repeat a completed mission.",
+      "descriptionZh": "标注的高补给边界测试不能重买已有模块、部分建设后再买整包，或重复执行已完成任务。",
+      "fixture": {
+        "config": {
+          "schemaVersion": 1,
+          "id": "signal-camp-revised",
+          "title": "Signal Camp — modular construction",
+          "titleZh": "信标营地 · 分步建设",
+          "mode": "modular",
+          "turnLimit": 6,
+          "initialSupplies": 20,
+          "incomePerTurn": 1,
+          "bundleCost": 6,
+          "moduleCosts": {
+            "beacon": 3,
+            "survey-kit": 3
+          },
+          "missions": {
+            "signal": {
+              "module": "beacon",
+              "metric": "people",
+              "cost": 1,
+              "earlyThroughTurn": 2,
+              "earlyValue": 6,
+              "lateValue": 2,
+              "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+              "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+            },
+            "survey": {
+              "module": "survey-kit",
+              "metric": "routes",
+              "cost": 1,
+              "earlyThroughTurn": 2,
+              "earlyValue": 3,
+              "lateValue": 1,
+              "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+              "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+            }
+          },
+          "goals": [
+            {
+              "id": "rescue-priority",
+              "name": "Evacuate the stranded group",
+              "nameZh": "优先接走滞留者",
+              "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+              "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+              "requirements": {
+                "people": 6,
+                "routes": 1
+              }
+            },
+            {
+              "id": "route-priority",
+              "name": "Open routes for the next crew",
+              "nameZh": "优先打通后续路线",
+              "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+              "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+              "requirements": {
+                "people": 2,
+                "routes": 3
+              }
+            }
+          ]
+        },
+        "built": {
+          "configId": "signal-camp-revised",
+          "turn": 1,
+          "supplies": 18,
+          "grossIncome": 1,
+          "spent": 3,
+          "modules": [
+            "beacon"
+          ],
+          "missions": [],
+          "people": 0,
+          "routes": 0,
+          "ended": false,
+          "actions": [
+            "build:beacon"
+          ]
+        },
+        "done": {
+          "configId": "signal-camp-revised",
+          "turn": 2,
+          "supplies": 18,
+          "grossIncome": 2,
+          "spent": 4,
+          "modules": [
+            "beacon"
+          ],
+          "missions": [
+            {
+              "id": "signal",
+              "turn": 2,
+              "value": 6,
+              "early": true
+            }
+          ],
+          "people": 6,
+          "routes": 0,
+          "ended": false,
+          "actions": [
+            "build:beacon",
+            "signal"
+          ]
+        }
+      }
+    }
+  },
+  "limitations": [
+    "The baseline is an original deliberately constrained comparison, not a measured defect in a released commercial game.",
+    "People and route coverage are outcomes, not the supply resource. Only supply production is held constant.",
+    "The original brief requests both versions; no later user feedback or human playtest is invented.",
+    "All paths receive the same per-turn supplies; different uncompleted paths may spend different amounts or keep different balances.",
+    "The modular witnesses still wait twice and require an extra construction action. Choosing the wrong first module permanently misses the selected goal.",
+    "The retained bundle is dominated for these two goals. No claim is made that every available button is strategically competitive.",
+    "Automated search and tests establish this model, not comprehension, fun, retention or general superiority."
+  ]
+}

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f0">
+  <meta name="description" content="From a game brief to a playable prototype. Follow a real completed workflow, play Rain Harbor, and inspect how a rule change is verified.">
+  <title>Game Design Agents · From brief to playable</title>
+  <link rel="icon" type="image/svg+xml" href="./demo/favicon.svg">
+  <link rel="stylesheet" href="./demo/workflow.css">
+  <script type="module" src="./demo/workflow.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workflow-demo" data-i18n="skip">Skip to the workflow demo</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Game Design Agents home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M15 12h10l4 21H11z"/><path d="m12 12 8-7 8 7M7 35h26M18 18h4M18 24h4"/></svg></span>
+        <span>Game Design Agents</span>
+      </a>
+      <div class="header-actions">
+        <label><span class="sr-only" data-i18n="language">Language</span><select id="language-select" class="language-select"><option value="en">English</option><option value="zh">简体中文</option></select></label>
+        <a class="github-link" href="https://github.com/yiyiwahmo28-hue/game-design-agents" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.21.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub ↗</span></a>
+      </div>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">Your AI game design team</p>
+          <h1 id="page-title" data-i18n="headline">From one game brief to a playable prototype.<br>Change the rules. Verify the result.</h1>
+          <p class="intro-copy" data-i18n="intro">See a real completed workflow: rules, handoffs, a browser game, and a checked change. Run the team in your own assistant.</p>
+        </div>
+        <div class="intro-actions">
+          <a class="button button-primary" href="?step=prototype#workflow-demo" id="try-button" data-i18n="tryGame">Play the prototype ↗</a>
+          <a class="text-link" id="start-top" href="https://github.com/yiyiwahmo28-hue/game-design-agents/blob/main/docs/start-your-game.md" data-i18n="yourBrief">Start with your own brief ↗</a>
+        </div>
+      </section>
+      <section id="workflow-demo" class="workflow-demo" aria-labelledby="demo-title">
+        <div class="demo-heading">
+          <div class="demo-title">
+            <span class="scenario-symbol" aria-hidden="true"><svg viewBox="0 0 30 30"><path d="M3 20h24l-5 6H8ZM9 20v-8h12v8M15 12V4m0 0 8 5h-8M4 4l-2 4m7-6L7 6M24 3l-2 4"/></svg></span>
+            <div><h2 id="demo-title" data-i18n="scenario">Rain Harbor</h2><p class="demo-kicker" data-i18n="scenarioNote">An original, fictional brief · a real execution record</p></div>
+          </div>
+          <span class="record-badge" id="record-badge" data-i18n="loadingRecord">Loading execution record</span>
+        </div>
+        <nav class="step-nav" role="tablist" aria-label="Workflow steps" id="step-nav">
+          <button class="step-button" type="button" id="tab-brief" role="tab" data-step="brief" aria-selected="true" aria-controls="workflow-stage"><span class="step-number">01</span><span><span class="step-label" data-i18n="briefTab">The brief</span><span class="step-status" data-record-status>—</span></span></button>
+          <button class="step-button" type="button" id="tab-design" role="tab" data-step="design" aria-selected="false" aria-controls="workflow-stage" tabindex="-1"><span class="step-number">02</span><span><span class="step-label" data-i18n="designTab">Design & handoff</span><span class="step-status" data-record-status>—</span></span></button>
+          <button class="step-button" type="button" id="tab-prototype" role="tab" data-step="prototype" aria-selected="false" aria-controls="workflow-stage" tabindex="-1"><span class="step-number">03</span><span><span class="step-label" data-i18n="prototypeTab">Playable prototype</span><span class="step-status" data-record-status>—</span></span></button>
+          <button class="step-button" type="button" id="tab-change" role="tab" data-step="change" aria-selected="false" aria-controls="workflow-stage" tabindex="-1"><span class="step-number">04</span><span><span class="step-label" data-i18n="changeTab">Change the brief</span><span class="step-status" data-record-status>—</span></span></button>
+          <button class="step-button" type="button" id="tab-verify" role="tab" data-step="verify" aria-selected="false" aria-controls="workflow-stage" tabindex="-1"><span class="step-number">05</span><span><span class="step-label" data-i18n="verifyTab">Verify & deliver</span><span class="step-status" data-record-status>—</span></span></button>
+        </nav>
+        <div id="workflow-stage" role="tabpanel" aria-labelledby="tab-brief" tabindex="0"><p class="loading-panel" data-i18n="loading">Loading the recorded workflow…</p></div>
+        <div class="demo-bottom"><p data-i18n="recordNote">Completed work, not a live AI simulation. This page does not call a model.</p><div class="step-arrows"><button type="button" id="previous-step" aria-label="Previous step">←</button><button type="button" id="next-step" aria-label="Next step">→</button></div></div>
+      </section>
+      <section class="start-section" aria-labelledby="start-title">
+        <div><p class="eyebrow" data-i18n="startEyebrow">Your brief is next</p><h2 id="start-title" data-i18n="startTitle">Bring one mechanic. Start a small loop.</h2><p data-i18n="startCopy">Create a workspace, then give its prompt to your assistant. The prompt points to the Skill in this checkout; the command does not call a model.</p><a id="start-guide" href="https://github.com/yiyiwahmo28-hue/game-design-agents/blob/main/docs/start-your-game.md" data-i18n="startGuide">Follow the start guide ↗</a></div>
+        <div><div class="starter"><div class="starter-top"><span data-i18n="startCommand">Run in a local repository checkout</span><button type="button" id="copy-command" data-i18n="copyCommand">Copy command</button></div><code id="start-command">npm run new -- --name my-game --brief "Make a small rescue game with a preparation choice" --lang en</code></div><div class="start-links"><button type="button" class="button" id="copy-prompt" data-i18n="copyPrompt">Copy an assistant prompt</button><a href="./lantern.html" id="lantern-link" data-i18n="lanternLink">Also play Lantern Expedition ↗</a></div></div>
+      </section>
+    </main>
+    <footer><span>Game Design Agents</span><span data-i18n="footerNote">Actual artifacts and executable rules. Human playtesting is still a separate step.</span><a id="workflow-docs" href="https://github.com/yiyiwahmo28-hue/game-design-agents/blob/main/docs/workflow.md" data-i18n="workflowGuide">Read the workflow ↗</a></footer>
+  </div>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript><p class="loading-panel">JavaScript is needed for the interactive workflow and prototype. The original brief, rules, and evidence remain available in the GitHub repository.</p></noscript>
+</body>
+</html>

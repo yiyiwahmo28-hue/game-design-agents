@@ -14,7 +14,7 @@ jobs:
           node-version: '22'
       - name: Test shared engines and the first-run tools
         run: npm test
-      - name: Compare Rain Harbor against the independent rule oracle
+      - name: Compare Rain Harbor and Signal Camp with independent rule oracles
         run: npm run audit
-      - name: Check evidence for both original cases
+      - name: Check evidence for all three original cases
         run: npm run verify

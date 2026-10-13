@@ -2,7 +2,7 @@
 name: game-design-team
 description: Coordinate game system design, economy modeling, prototyping, and evidence review when creating or revising a playable mechanic.
 metadata:
-  version: "0.2.0"
+  version: "0.3.0"
 ---
 
 # Game Design Team
@@ -54,6 +54,8 @@ Choose the smallest useful loop:
 4. **Review:** inspect the resulting artifacts and evidence. Exercise the changed behavior, not just the wording of the specification. Resolve clear defects within scope; distinguish design alternatives from defects.
 
 When a rule changes, identify affected specifications, parameter sources, simulator inputs, runtime behavior, presentation, and acceptance cases. Update those that actually exist and matter to the change. Record omitted or unverified dependencies. Keep unrelated work intact; do not regenerate or rewrite a whole project to make a narrow change easier.
+
+When the request concerns early waiting, unlock order or bringing a choice forward under an economic constraint, read [references/pacing-redesign.md](references/pacing-redesign.md). Separate income, spending and balance; identify the blocking gate, compare alternatives from the same state, and report the costs of an earlier decision.
 
 For ongoing work, use the short handoff in [references/handoff.md](references/handoff.md). That file also contains an optional brief template. A handoff needs only the baseline, decision rationale, artifacts, and acceptance evidence or remaining gaps. Reuse existing documents instead of duplicating every rule in several reports.
 

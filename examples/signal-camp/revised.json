@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "id": "signal-camp-revised",
+  "title": "Signal Camp — modular construction",
+  "titleZh": "信标营地 · 分步建设",
+  "mode": "modular",
+  "turnLimit": 6,
+  "initialSupplies": 3,
+  "incomePerTurn": 1,
+  "bundleCost": 6,
+  "moduleCosts": {
+    "beacon": 3,
+    "survey-kit": 3
+  },
+  "missions": {
+    "signal": {
+      "module": "beacon",
+      "metric": "people",
+      "cost": 1,
+      "earlyThroughTurn": 2,
+      "earlyValue": 6,
+      "lateValue": 2,
+      "windowReason": "The transport boat leaves after turn 2. An early signal evacuates 6 people; later, the local boat can take only 2.",
+      "windowReasonZh": "接驳船在第2回合结束后离开。及时发信号可接走6人；晚了只能由本地小船接走2人。"
+    },
+    "survey": {
+      "module": "survey-kit",
+      "metric": "routes",
+      "cost": 1,
+      "earlyThroughTurn": 2,
+      "earlyValue": 3,
+      "lateValue": 1,
+      "windowReason": "The tide covers two shallow crossings after turn 2. An early survey maps 3 routes; a later survey can map only 1.",
+      "windowReasonZh": "第2回合结束后，涨潮淹没两条浅滩。及时勘测可标记3条路线；晚了只能标记1条。"
+    }
+  },
+  "goals": [
+    {
+      "id": "rescue-priority",
+      "name": "Evacuate the stranded group",
+      "nameZh": "优先接走滞留者",
+      "description": "Evacuate all 6 people and leave at least 1 marked route for the next crew.",
+      "descriptionZh": "接走全部6人，并为后续队伍留下至少1条已标记路线。",
+      "requirements": {
+        "people": 6,
+        "routes": 1
+      }
+    },
+    {
+      "id": "route-priority",
+      "name": "Open routes for the next crew",
+      "nameZh": "优先打通后续路线",
+      "description": "Mark all 3 routes and evacuate at least 2 people with the local boat.",
+      "descriptionZh": "标记全部3条路线，同时至少用本地小船接走2人。",
+      "requirements": {
+        "people": 2,
+        "routes": 3
+      }
+    }
+  ]
+}

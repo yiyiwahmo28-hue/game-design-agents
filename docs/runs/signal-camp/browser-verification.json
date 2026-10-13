@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-13T05:26:35.174Z",
+  "surface": "local",
+  "checks": [
+    {
+      "name": "Original only permits waiting; revision offers two real first-turn modules",
+      "result": "passed"
+    },
+    {
+      "name": "Actual rescue-first controls preserve every income boundary and yield 6/1 versus 2/1",
+      "result": "passed"
+    },
+    {
+      "name": "Changing the objective re-evaluates the same outcome without rewriting the game",
+      "result": "passed"
+    },
+    {
+      "name": "Actual survey-first controls reverse the successful opening at the same total income",
+      "result": "passed"
+    },
+    {
+      "name": "Language switching preserves both played states and updates the interface",
+      "result": "passed"
+    },
+    {
+      "name": "Design and evidence views expose costs, both outcomes and the unchanged budget",
+      "result": "passed"
+    },
+    {
+      "name": "Keyboard navigation changes the case view",
+      "result": "passed"
+    },
+    {
+      "name": "The declared strategy playback performs six real transitions in both versions",
+      "result": "passed"
+    },
+    {
+      "name": "390px layout has no horizontal overflow; manual revised actions still work",
+      "result": "passed"
+    }
+  ],
+  "consoleErrors": []
+}

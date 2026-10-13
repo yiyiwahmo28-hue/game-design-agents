@@ -1,0 +1,497 @@
+{
+  "schemaVersion": 1,
+  "caseId": "signal-camp",
+  "source": "Actual independent reviewer browser operations; assistant observation, not a human playtest.",
+  "mainOperationPass": {
+    "recordedAt": "2026-10-13T05:22:22.377Z",
+    "environment": {
+      "protocolVersion": "1.3",
+      "product": "Edg/148.0.3967.70",
+      "revision": "@8956564be045061b387e6945ad0caeb4e3bd0ade",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+      "jsVersion": "14.8.21.7"
+    },
+    "checks": [
+      {
+        "id": "original-three-waits",
+        "status": "passed",
+        "evidence": {
+          "initialControls": [
+            {
+              "version": "baseline",
+              "available": [
+                "wait"
+              ]
+            },
+            {
+              "version": "revised",
+              "available": [
+                "build:beacon",
+                "build:survey-kit",
+                "wait"
+              ]
+            }
+          ],
+          "final": {
+            "configId": "signal-camp-baseline",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal",
+              "survey"
+            ]
+          }
+        }
+      },
+      {
+        "id": "rescue-path-and-closed-controls",
+        "status": "passed",
+        "evidence": {
+          "final": {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 6,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait",
+              "wait",
+              "build:survey-kit",
+              "survey"
+            ]
+          }
+        }
+      },
+      {
+        "id": "goal-switch-preserves-play",
+        "status": "passed",
+        "evidence": {
+          "goal": "route-priority",
+          "states": {
+            "baseline": {
+              "configId": "signal-camp-baseline",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 5,
+                  "value": 2,
+                  "early": false
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 2,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "wait",
+                "wait",
+                "wait",
+                "build:bundle",
+                "signal",
+                "survey"
+              ]
+            },
+            "revised": {
+              "configId": "signal-camp-revised",
+              "turn": 6,
+              "supplies": 1,
+              "grossIncome": 6,
+              "spent": 8,
+              "modules": [
+                "beacon",
+                "survey-kit"
+              ],
+              "missions": [
+                {
+                  "id": "signal",
+                  "turn": 2,
+                  "value": 6,
+                  "early": true
+                },
+                {
+                  "id": "survey",
+                  "turn": 6,
+                  "value": 1,
+                  "early": false
+                }
+              ],
+              "people": 6,
+              "routes": 1,
+              "ended": true,
+              "actions": [
+                "build:beacon",
+                "signal",
+                "wait",
+                "wait",
+                "build:survey-kit",
+                "survey"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "route-path-with-opportunity-cost",
+        "status": "passed",
+        "evidence": {
+          "final": {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              },
+              {
+                "id": "signal",
+                "turn": 6,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 3,
+            "ended": true,
+            "actions": [
+              "build:survey-kit",
+              "survey",
+              "wait",
+              "wait",
+              "build:beacon",
+              "signal"
+            ]
+          }
+        }
+      },
+      {
+        "id": "missed-window",
+        "status": "passed",
+        "evidence": {
+          "final": {
+            "configId": "signal-camp-revised",
+            "turn": 3,
+            "supplies": 2,
+            "grossIncome": 3,
+            "spent": 4,
+            "modules": [
+              "beacon"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 3,
+                "value": 2,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 0,
+            "ended": false,
+            "actions": [
+              "build:beacon",
+              "wait",
+              "signal"
+            ]
+          }
+        }
+      },
+      {
+        "id": "language-preserves-play",
+        "status": "passed",
+        "evidence": {
+          "lang": "en"
+        }
+      },
+      {
+        "id": "three-views",
+        "status": "passed",
+        "evidence": [
+          {
+            "view": "design",
+            "width": 1440,
+            "documentWidth": 1425,
+            "text": "⌁\nSignal Camp\n\nAn original game design case · play the change\n\nBoth versions: +6 supplies\n01Play the difference\n02Why this change\n03Check the tradeoff\n\nTHE DESIGN JUDGMENT\n\nMove the commitment earlier.\nKeep the consequence.\n\nThe problem was the purchase threshold: players could afford neither function until the early opportunities had gone. More supplies would hide that problem.\n\nThe supply constraint stays fixed\nStart with 3. Every valid action ends with +1; all sessions last 6 turns. Both builds together still cost 6. People and routes are outcomes, not supply income.\n01\nSplit the purchase, not the total price\n\nReplace one 6-supply purchase with 3 + 3. Each part has a usable function immediately. Full construction needs one extra action.\n\n02\nMake the first choice depend on the goal\n\nAn early signal saves 6 people. An early survey marks 3 routes. A different assignment changes which opening is useful.\n\n03\nExplain the window before the click\n\nThe transport boat leaves and the tide rises after turn 2. You can preserve one early opportunity, not both. Later action still helps, but gives less.\n\nBefore\nT1\nWait\nT2\nWait\nT3\nWait\nT4\nBuild all\nT5\nSurvey\nT6\nSignal\nAfter\nT1\nSurvey kit\nT2\nSurvey\nT3\nWait\nT4\nWait\nT5\nBeacon\nT6\nSignal\n\nOne executed policy for the selected goal. The revised version still waits in the middle; the early decision now changes the outcome.\n\nPlayable rules and deterministic checks. Player understanding still needs a human playtest.\n\nFull case & evidence ↗"
+          },
+          {
+            "view": "verify",
+            "width": 1440,
+            "documentWidth": 1425,
+            "text": "⌁\nSignal Camp\n\nAn original game design case · play the change\n\nBoth versions: +6 supplies\n01Play the difference\n02Why this change\n03Check the tradeoff\n\nREPRODUCED BY THE SHARED RULES ENGINE\n\nSame income.\nA different best opening.\n\nChange the assignment below. The outcomes stay put; which route meets the goal changes.\n\n66\nreachable states checked\nYour assignment\nRescue first\nRoutes first\n\nMark all 3 routes and evacuate at least 2 people with the local boat.\n\nPlayed route\tPeople\tRoutes\tEarned / spent / left\tAssignment\nOriginal bundle\nSame result under either goal\n\t2\t1\t6 / 8 / 1\tDoes not meet goal\nBeacon first\nProtect the rescue window\n\t6\t1\t6 / 8 / 1\tDoes not meet goal\nSurvey kit first\nProtect the low-tide window\n\t2\t3\t6 / 8 / 1\tMeets goal\nThe opening matters to this assignment\n\nSurvey kit first meets this assignment. The other modular opening loses the early opportunity it did not prepare for. No legal route gets both early rewards.\n\nWhat we accept in exchange\n\nOne more build action. Two mid-session waits on these completed routes. More information to understand before the first click; a wrong opening cannot recover the early window.\n\nBoth full routes: initial 3 + income 6 − spending 8 = 1 left. The search covers this fixed deterministic case; it does not establish enjoyment or player comprehension. Inspect reproducible evidence ↗\n\nPlayable rules and deterministic checks. Player understanding still needs a human playtest.\n\nFull case & evidence ↗"
+          },
+          {
+            "view": "play",
+            "width": 1440,
+            "documentWidth": 1425,
+            "text": "⌁\nSignal Camp\n\nAn original game design case · play the change\n\nBoth versions: +6 supplies\n01Play the difference\n02Why this change\n03Check the tradeoff\nYour assignment\nRescue first\nRoutes first\nReset both\nReplay this goal from start\n\nMark all 3 routes and evacuate at least 2 people with the local boat.\nEarly window closes after turn 2.\n\nBeforeOne locked bundle\nAll-in: 6\nNext: turn 1 of 6\nBoat & low tide available\nSupplies left\n3\nEvacuated\n0 / 2\nRoutes marked\n0 / 3\nTurns spent\n0 / 6\nBuild the whole camp\n−6\nNeeds 6; available 3 before delivery\nSend the rescue signal\n−1\nNeeds beacon · early 6 people / late 2\nMap safe routes\n−1\nNeeds survey kit · early 3 routes / late 1\nWait for supplies\n+1 supplies · costs 1 turn\n\nOnly waiting is affordable. The whole bundle must be paid for before building.\n\nSupplies ledger\nEarned 0 · Spent 0 · Left 3\nAfterChoose your first module\n3 + 3 = 6 supplies\nNext: turn 4 of 6\nBoat left · tide rose\nSupplies left\n2\nEvacuated\n2 / 2\nRoutes marked\n0 / 3\nTurns spent\n3 / 6\nBuild beacon\n−3\nAlready built\nBuild survey kit\n−3\nNeeds 3; available 2 before delivery\nSend the rescue signal\n−1\nMission complete · once per session\nMap safe routes\n−1\nNeeds survey kit · early 3 routes / late 1\nWait for supplies\n+1 supplies · costs 1 turn\nKeep the original bundle as a comparison · 6\n\nTurn 3: Signal → 2 people. The early window has passed.\n\nSupplies ledger\nEarned 3 · Spent 4 · Left 2\nOriginal: waiting for the bundle\n3 forced waits → build on turn 4\nRevised: choose what comes first\nChoose a module on turn 1\nPreserved supply delivery\nStart 3 · +1 each turn · 6 turns\n\nPlayable rules and deterministic checks. Player understanding still needs a human playtest.\n\nFull case & evidence ↗"
+          }
+        ]
+      },
+      {
+        "id": "actual-policy-replay",
+        "status": "passed",
+        "evidence": {
+          "baseline": {
+            "configId": "signal-camp-baseline",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 5,
+                "value": 2,
+                "early": false
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 2,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "wait",
+              "wait",
+              "wait",
+              "build:bundle",
+              "signal",
+              "survey"
+            ]
+          },
+          "revised": {
+            "configId": "signal-camp-revised",
+            "turn": 6,
+            "supplies": 1,
+            "grossIncome": 6,
+            "spent": 8,
+            "modules": [
+              "beacon",
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "signal",
+                "turn": 2,
+                "value": 6,
+                "early": true
+              },
+              {
+                "id": "survey",
+                "turn": 6,
+                "value": 1,
+                "early": false
+              }
+            ],
+            "people": 6,
+            "routes": 1,
+            "ended": true,
+            "actions": [
+              "build:beacon",
+              "signal",
+              "wait",
+              "wait",
+              "build:survey-kit",
+              "survey"
+            ]
+          }
+        }
+      },
+      {
+        "id": "mobile-390-action-and-fit",
+        "status": "passed",
+        "evidence": {
+          "viewport": 390,
+          "document": 375,
+          "state": {
+            "configId": "signal-camp-revised",
+            "turn": 2,
+            "supplies": 1,
+            "grossIncome": 2,
+            "spent": 4,
+            "modules": [
+              "survey-kit"
+            ],
+            "missions": [
+              {
+                "id": "survey",
+                "turn": 2,
+                "value": 3,
+                "early": true
+              }
+            ],
+            "people": 0,
+            "routes": 3,
+            "ended": false,
+            "actions": [
+              "build:survey-kit",
+              "survey"
+            ]
+          }
+        }
+      }
+    ],
+    "consoleErrors": []
+  },
+  "finalBilingualRecheck": {
+    "recordedAt": "2026-10-13T05:23:59.667Z",
+    "environment": {
+      "protocolVersion": "1.3",
+      "product": "Edg/148.0.3967.70",
+      "revision": "@8956564be045061b387e6945ad0caeb4e3bd0ade",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/148.0.0.0 Safari/537.36 Edg/148.0.0.0",
+      "jsVersion": "14.8.21.7"
+    },
+    "checks": [
+      {
+        "lang": "en",
+        "prereq": "Send the rescue signal\n−1\nNeeds beacon · early 6 people / late 2",
+        "early": "Send the rescue signal\n−1\nThis turn: +6 people · early window",
+        "late": "Send the rescue signal\n−1\nThis turn: +2 people · late arrival",
+        "checks": 12,
+        "goalWinners": [
+          {
+            "goal": "rescue-priority",
+            "winner": "Beacon first\nProtect the rescue window\n\t6\t1\t6 / 8 / 1\tMeets goal"
+          },
+          {
+            "goal": "route-priority",
+            "winner": "Survey kit first\nProtect the low-tide window\n\t2\t3\t6 / 8 / 1\tMeets goal"
+          }
+        ],
+        "keyboardTabs": "passed"
+      },
+      {
+        "lang": "zh",
+        "prereq": "发出救援信号\n−1\n需信标 · 早期 6 人 / 晚期 2",
+        "early": "发出救援信号\n−1\n本回合可获得 6 人 · 赶上早期窗口",
+        "late": "发出救援信号\n−1\n本回合可获得 2 人 · 已经错过早期窗口",
+        "checks": 12,
+        "goalWinners": [
+          {
+            "goal": "rescue-priority",
+            "winner": "改版：信标先行\n保住救援窗口\n\t6\t1\t6 / 8 / 1\t达成任务"
+          },
+          {
+            "goal": "route-priority",
+            "winner": "改版：工具先行\n保住勘路窗口\n\t2\t3\t6 / 8 / 1\t达成任务"
+          }
+        ],
+        "keyboardTabs": "passed"
+      }
+    ],
+    "consoleErrors": []
+  },
+  "finalSceneRecheck": {
+    "recordedAt": "2026-10-13T05:27:15.316Z",
+    "state": {
+      "configId": "signal-camp-revised",
+      "turn": 2,
+      "supplies": 1,
+      "grossIncome": 2,
+      "spent": 4,
+      "modules": [
+        "survey-kit"
+      ],
+      "missions": [
+        {
+          "id": "survey",
+          "turn": 2,
+          "value": 3,
+          "early": true
+        }
+      ],
+      "people": 0,
+      "routes": 3,
+      "ended": false,
+      "actions": [
+        "build:survey-kit",
+        "survey"
+      ]
+    },
+    "highlights": [
+      0,
+      3
+    ],
+    "consoleErrors": []
+  }
+}
