@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-13T02:46:24.658Z",
+  "surface": "local",
+  "checks": [
+    {
+      "name": "Baseline: shared action previews and actual preparation",
+      "result": "passed"
+    },
+    {
+      "name": "Revised rescue undo restores state and spends its allowance",
+      "result": "passed"
+    },
+    {
+      "name": "Undo is available after closure and reopens the prior turn",
+      "result": "passed"
+    },
+    {
+      "name": "Language switching preserves the game and localizes the interface",
+      "result": "passed"
+    },
+    {
+      "name": "The five stages and final evidence come from retained artifacts",
+      "result": "passed"
+    },
+    {
+      "name": "Keyboard tabs work with arrow navigation",
+      "result": "passed"
+    },
+    {
+      "name": "390px layout: no horizontal overflow and real touch-sized controls operate",
+      "result": "passed"
+    }
+  ],
+  "consoleErrors": []
+}

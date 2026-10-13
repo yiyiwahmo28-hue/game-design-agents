@@ -1,127 +1,111 @@
 <div align="center">
 
-<img src="docs/assets/logo.svg" width="76" height="76" alt="Game Design Agents logo" />
+<img src="docs/assets/logo.svg" width="72" height="72" alt="Game Design Agents" />
 
-<h1>Game Design Agents</h1>
+# Game Design Agents
 
-**Your AI game design team. From an idea to a playable system.**
+**Give your AI a game brief. Get a playable prototype. Change the rules and verify the result.**
 
-Design the rules. Tune the numbers. Play the result. Keep them in sync when things change.
+A design-to-delivery workflow for tool-enabled AI assistants, with an original case you can inspect and play.
 
-[![Version](https://img.shields.io/badge/version-0.1.0-176b61?style=flat-square)](package.json) [![Checks](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-176b61?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.2.0-176b61?style=flat-square)](package.json) [![Checks](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-176b61?style=flat-square)](LICENSE)
 
-[**Play the demo**](https://yiyiwahmo28-hue.github.io/game-design-agents/) · [Quickstart](#quickstart) · [How it works](docs/workflow.md) · [简体中文](README.zh-CN.md)
+[**Explore the real run & play**](https://yiyiwahmo28-hue.github.io/game-design-agents/) · [Start your game](#start-your-game) · [中文](README.zh-CN.md)
 
 </div>
 
-## See a design change become playable
+> “Make a game about rescuing boats before a storm. Preparing the boat and rescuing people now should both be meaningful choices.”
 
-> “The first upgrade takes too long. Bring it forward without reducing the cost of the full upgrade path.”
+<img src="docs/assets/demo-en.gif" width="1100" alt="Real delivery replay: brief, design handoff, playable prototype, follow-up rule change, and verification" />
 
-<div align="center">
-<img src="docs/assets/demo-en.gif" width="1000" alt="The playable Lantern Expedition demo switching between original and revised rules, gathering resources, upgrading and comparing simulated outcomes" />
-</div>
+*Actual browser captures of the completed execution record and working prototype, edited for length. The page replays retained artifacts; it does not call a model or simulate agents thinking. [Capture details](docs/demo.md) · [Full case](docs/runs/rain-harbor/README.md).*
 
-*Browser captures of the original example, edited into a short replay. This is a working deterministic game, not a live AI session. [Evidence and reproduction](docs/demo.md) · [Static preview](docs/assets/demo-en.png).*
+## The problem
 
-Try both versions, make your own choices, and compare the results under two explicit play policies. The browser and simulator use the **same game engine**. The [checked-in report](docs/evidence/simulation.md) shows the assumptions, numbers, and tradeoffs.
+Your assistant writes a design, another prompt produces a prototype, and a later rule change leaves the document, configuration, and game disagreeing. You have to discover the gaps yourself.
 
-## Why use it?
+This Skill carries a brief through design decisions, implementation, and checks. A change request includes its affected artifacts and the evidence needed to accept it.
 
-An AI can write a design document, a balance table, and a prototype that quietly disagree. A new rule can fix the opening minutes while changing the rest of the game.
-
-Game Design Agents gives your assistant a workflow for making those decisions and following them through. It is for solo developers and small teams who want a design partner while building or changing a game.
-
-| Your request | What the team works through |
+| You provide | You can inspect |
 | --- | --- |
-| “Turn this mechanic into a playable loop.” | Experience goal → rules → parameters → prototype → observable acceptance |
-| “This progression feels slow.” | Player-behavior assumptions → options → calculations → playable comparison |
-| “Change this reward rule.” | Confirmed decision → affected artifacts → implementation → regression evidence |
+| A new gameplay brief | Design choices, rule specification, editable inputs, and a working prototype |
+| A change request | Its impact, updated behavior, preserved constraints, and before/after checks |
+| A result to review | Actual runs and findings, with missing evidence stated explicitly |
 
-The example is small enough to inspect. The workflow can be applied to your own project; integrations with your engine and data pipeline must be implemented and verified there.
+## Start your game
 
-## Quickstart
+Requires Node.js 22+ and an AI coding assistant that can read files, edit them, and run commands. No dependencies to install for the included tools.
 
-**Play now:** [open the browser demo](https://yiyiwahmo28-hue.github.io/game-design-agents/). No account or API key.
+```sh
+git clone https://github.com/yiyiwahmo28-hue/game-design-agents.git
+cd game-design-agents
+npm run new -- --name my-game --brief "A rescue game with fuel, stranded boats, and a storm deadline."
+```
 
-**Give your assistant the team** with the [Skills CLI](https://github.com/vercel-labs/skills):
+**Paste the printed prompt into your assistant with this repository open.** It points to the Skill and your new workspace. The command prepares files; your assistant performs the design and implementation using its own model and tools. Follow the generated `START_HERE.md` to inspect the delivery, run it, and request a change.
+
+[Step-by-step guide and expected outputs →](docs/start-your-game.md)
+
+<details>
+<summary>Use the Skill in an existing project</summary>
 
 ```sh
 npx skills add yiyiwahmo28-hue/game-design-agents --skill game-design-team
 ```
 
-Then ask:
+Ask your assistant to use `game-design-team` with your brief or change request. The standalone Skill is self-contained; it does not include this repository's demo or CLI.
 
-```text
-Use $game-design-team to design a small exploration game.
-I want gathering, upgrading, and exploration to compete for the same resource.
-Help me choose a first playable loop, then implement and verify it in this workspace.
-```
-
-The skill uses your assistant's existing model and tools. When the host supports delegation, the coordinator can dispatch independent work. Otherwise it performs transparent, sequential role passes. It does not run a separate agent service.
+</details>
 
 <details>
-<summary>Run and modify the included example locally</summary>
-
-Requires Node.js 22 or newer. No dependency installation is needed.
+<summary>Run the published examples locally</summary>
 
 ```sh
-git clone https://github.com/yiyiwahmo28-hue/game-design-agents.git
-cd game-design-agents
 npm start
 ```
 
-Open `http://127.0.0.1:4173`. Run `npm test` to test the engine, `npm run simulate` to regenerate the evidence, and `npm run verify` to detect stale reports.
+Open `http://127.0.0.1:4173` for the Rain Harbor execution replay and playable prototype. The earlier [Lantern Expedition](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html) remains available at `/lantern.html`.
 
-This is a source repository; `private: true` in `package.json` prevents accidental npm publication and does not restrict the MIT license.
-
-</details>
-
-<details>
-<summary>Manual installation and Claude Code roles</summary>
-
-Copy the complete [`skills/game-design-team`](skills/game-design-team) folder into a skill directory supported by your assistant. Keep its references and metadata together. Named invocation syntax depends on the host.
-
-For Claude Code, this repository also includes five optional [native subagent definitions](.claude/agents/). Work in the cloned repository, or copy the definitions into your project's `.claude/agents/` without overwriting your existing files. The coordinator instructions remain in the portable skill. See [setup and compatibility](docs/workflow.md).
-
-The definitions are provided as a host adapter; Claude Code execution has not been end-to-end tested in this release.
+`npm test` runs behavior and tool tests. `npm run simulate` regenerates evidence for both cases; `npm run verify` checks it against the current inputs and engine.
 
 </details>
 
-## Five roles, concrete handoffs
+## A real brief → prototype → revision
 
-| Role | Delivers |
+**Rain Harbor** started from a [new fictional brief](docs/runs/rain-harbor/brief.md). The coordinator delegated system/economy design and core implementation, assigned the browser interface separately, and followed the first implementation with a new change request and independent review.
+
+The [complete case](docs/runs/rain-harbor/README.md) retains the design, actual handoff summaries, executable inputs, revision request, results, and limits. Responsibilities were combined where useful; the execution mode is recorded.
+
+The homepage makes the work inspectable and lets you play the result. The game and verification import the same rules module. Deterministic checks can be reproduced locally; generating a new game still requires your assistant and will vary by host and model.
+
+## How the team works
+
+| Responsibility | Owns |
 | --- | --- |
-| Design lead | The experience goal, constraints, decisions, and accepted tradeoffs |
-| Systems designer | Rules, state transitions, edge cases, and acceptance scenarios |
-| Economy designer | Editable parameters, formulas or simulations, and tuning consequences |
-| Prototype developer | A playable implementation of the agreed rules |
-| Playtest reviewer | Expected versus observed behavior, reproduction steps, and remaining questions |
+| Design lead | Player goal, scope, choices, and integration |
+| Systems designer | Rules, boundaries, and acceptance scenarios |
+| Economy designer | Resource tradeoffs, assumptions, and scenario results |
+| Prototype developer | Running behavior through real code and configuration |
+| Playtest reviewer | Findings supported by artifacts and observations |
 
-Each handoff names the baseline, decisions, artifacts, and evidence. The coordinator integrates shared changes; dependent tasks wait for their inputs. See the [workflow](docs/workflow.md) and [role instructions](skills/game-design-team/references/roles.md).
+Use the roles the task needs. Where the host supports callable subagents, delegate real work with explicit ownership. Otherwise, apply the roles sequentially and disclose self-review. [Workflow and compatibility →](docs/workflow.md)
 
-## What ships in v0.1
+## What the evidence supports
 
-- A portable **game-design-team Skill**, plus optional Claude Code role files.
-- **Lantern Expedition**, an independently authored, playable browser example.
-- Two rule configurations, one shared engine, and reproducible before/after simulations.
-- Automated behavior checks, bilingual documentation, and a visual walkthrough.
+- A completed original case and a follow-up change, with retained implementation and verification artifacts.
+- Deterministic game behavior and reproducible scenario results.
+- An installable Skill and a workspace starter for your own briefs.
 
-The browser example has no model backend. Simulations measure outcomes under stated play policies; they do not establish that a game is fun. This release makes no measured claim that multiple agents outperform a single assistant.
+The browser has no model backend. Tests do not establish player enjoyment, human comprehension, or multi-agent superiority. No controlled quality benchmark is claimed. Optional `.claude/agents/` definitions have not been exercised end to end in Claude Code. A generated workspace's completeness check confirms files exist; inspect and run them before accepting the work.
 
-## Learn and contribute
+## Contribute
 
-- [Workflow and setup](docs/workflow.md)
-- [Experience review: goals, choices, feedback, and pacing](skills/game-design-team/references/experience-review.md)
-- [Original change brief and design decisions](docs/example.md)
-- [Simulation evidence](docs/evidence/simulation.md) · [Visual evidence](docs/demo.md)
-- [An actual isolated Skill exercise](docs/evidence/skill-forward-test.md)
-- [Contributing](CONTRIBUTING.md) · [Report a problem](https://github.com/yiyiwahmo28-hue/game-design-agents/issues)
+Try your own brief and report a concrete failure: the input, expected behavior, actual artifacts, and host used. New reproducible cases and repairs are welcome.
 
-Created from a game systems designer's working methods. All examples and instructions here are independently written for public use; no employer documents or private game data are included. [Write Clear Spec](https://github.com/yiyiwahmo28-hue/write-clear-spec) is a companion for general requirements work.
+[Contribution guide](CONTRIBUTING.md) · [Open an issue](https://github.com/yiyiwahmo28-hue/game-design-agents/issues) · [Verification](docs/verification.md)
 
-[Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) inspired the exploration of a studio-shaped workflow. This project is independently implemented and is not affiliated with that project, Anthropic, or OpenAI.
+The method draws on game systems design and cross-role delivery. Public examples and instructions are independently authored and contain no employer documents or internal game data. [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) inspired the studio direction; this project is independent and unaffiliated. For general requirements writing, see [Write Clear Spec](https://github.com/yiyiwahmo28-hue/write-clear-spec).
 
 ## License
 
-[MIT](LICENSE).
+[MIT](LICENSE). `private: true` prevents accidental npm publication; the repository is open source.

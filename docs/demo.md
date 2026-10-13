@@ -1,39 +1,73 @@
-# Demo and verification
+# The homepage demo and GIFs
 
-The README GIFs show the actual **Lantern Expedition** browser interface,
-captured while operating its controls and edited into a short replay. They
-are not recordings of a live AI model or a fabricated multi-agent chat.
+The v0.2 homepage follows a completed **Rain Harbor** delivery through five
+steps: brief, design and handoffs, playable prototype, a follow-up request,
+and verification. The work was actually performed by delegated assistants;
+its [retained case](runs/rain-harbor/README.md) explains who did what.
+
+The page is a recorded workflow viewer with a working game. It does **not**
+call a model, stream an agent conversation, or show simulated “thinking.”
+Opening a step displays the retained work and links to its source.
 
 - [English GIF](assets/demo-en.gif) · [English still](assets/demo-en.png)
 - [中文 GIF](assets/demo-zh-CN.gif) · [中文静态图](assets/demo-zh-CN.png)
-- [Playable demo](https://yiyiwahmo28-hue.github.io/game-design-agents/)
-- [Authored change brief](example.md) · [Computed evidence](evidence/simulation.md)
+- [Interactive workflow](https://yiyiwahmo28-hue.github.io/game-design-agents/)
+- [Capture sequence and actual game states](assets/demo-capture.json)
 
-## Reproduce the interaction
+## What was recorded
 
-1. Run `npm start` in a complete clone, then open `http://127.0.0.1:4173`.
-2. In the original version, gather four times and buy the first upgrade.
-   The game clock includes four gathering actions and the upgrade action.
-3. Switch to the revised version, which starts a fresh expedition. Gather
-   twice and buy the first upgrade.
-4. Use the automatic play control to watch a named policy run through the
-   same engine, or make your own gathering, upgrading, and exploration choices.
-5. Inspect the comparison for both policies. Switch the interface language
-   to Chinese and repeat. The language changes presentation, not game rules.
+Both GIFs were captured from the real local browser page while operating its
+controls. The following sequence uses the same game rules as the public page:
 
-The displayed seconds are **modeled game time**, accumulated per accepted
-action. They are not wall-clock time spent clicking or the speed of an agent.
-Automatic playback compresses those game seconds for viewing.
+1. Open the original fictional brief.
+2. Show the actual responsibility handoffs and artifact links.
+3. Open the original playable build. Prepare, refuel twice, then rescue the
+   ferry. The game reports ten people saved.
+4. Open the follow-up request: one undo per run, while preserving the original
+   version and economic parameters.
+5. Switch to the revised playable version, which starts fresh. Rescue the skiff:
+   fuel becomes zero, four people are saved, and one turn is used.
+6. Click undo. Fuel returns to four, rescued people to zero, and all seven
+   turns are available again. The allowance stays spent.
+7. Open the actual generated verification results and source links.
 
-## What is verified
+The screenshots retain browser pixels. Replay durations are edited for
+legibility; no agent messages, gameplay outcomes, progress bars, or result
+labels are composited into the captures. This is a replay of completed work,
+not a measurement of agent execution speed.
 
-The engine tests exercise behavior and state invariants. `npm run verify`
-checks that committed simulation evidence still matches the current model
-and inputs. Browser checks inspect the actual interface, interactions, version
-switches, language switch, and narrow layout. The release evidence records the
-[checks actually run and their limits](verification.md).
+## Repeat the interaction
 
-Neither automated policies nor an agent inspecting the screen count as a human
-playtest. The release does not claim that the revised loop is more enjoyable,
-that all engines are supported out of the box, or that a multi-agent workflow
-has been benchmarked against a single assistant.
+Run `npm start`, then open `http://127.0.0.1:4173/?step=brief`. Follow the steps
+above using the page controls. Add `lang=zh` to use Chinese. Tabs also support
+arrow-key navigation. Changing versions starts a fresh run; changing language
+does not change the game state.
+
+All action costs, previews, and state changes come from `src/harbor.mjs`.
+The generated evidence executes that same module. The independent oracle in
+`scripts/review-harbor.mjs` implements the written rules separately for
+comparison.
+
+To inspect terminal undo, play all seven turns in the revised version,
+then undo the final action. The prior turn is reopened, with the allowance
+spent. See the [independent review](runs/rain-harbor/review.md) for a specific
+action sequence and observed values.
+
+## What the evidence means
+
+`npm test` exercises behavior and tools. `npm run audit` compares the game
+against the independent rule oracle. `npm run verify` checks that stored
+evidence matches the current model and inputs. The [release record](verification.md)
+covers actual browser operation and the checks performed.
+
+Recorded model strategies and an assistant observing the screen are not human
+playtests. They do not prove that players understand the preparation tradeoff,
+prefer undo, or find the game enjoyable. Those questions remain open.
+
+## Earlier example
+
+[Lantern Expedition](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html)
+remains playable at `/lantern.html`. Its [original case](example.md),
+[simulation evidence](evidence/simulation.md), and
+[v0.1 verification](verification-v0.1.md) remain available. The homepage GIFs
+now demonstrate the complete Rain Harbor workflow.

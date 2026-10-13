@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f1">
+  <meta name="description" content="Game Design Agents: clear game rules, a playable prototype, and changes you can check. Try the original Lantern Expedition example.">
+  <title>Game Design Agents · Lantern Expedition</title>
+  <link rel="icon" type="image/svg+xml" href="./demo/favicon.svg">
+  <link rel="stylesheet" href="./demo/style.css">
+  <script type="module" src="./demo/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#play" data-i18n="skip">Skip to the playable example</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Game Design Agents home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M15 12h10l4 21H11z"/><path d="m12 12 8-7 8 7"/><path d="M7 35h26M18 18h4M18 24h4"/></svg></span>
+        <span>Game Design Agents</span>
+      </a>
+      <div class="header-actions">
+        <label class="language-label"><span class="sr-only" data-i18n="language">Language</span><select id="language-select"><option value="en">English</option><option value="zh">简体中文</option></select></label>
+        <a class="github-link" href="https://github.com/yiyiwahmo28-hue/game-design-agents" target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.21.68-.48v-1.86c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub</span><span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">A small studio. Clear handoffs.</p>
+          <h1 id="page-title" data-i18n="headline">Turn a game idea into clear rules and a playable prototype.</h1>
+        </div>
+        <div class="intro-note"><span class="note-line" aria-hidden="true"></span><p data-i18n="intro">Try the loop. Switch the rules. See how one pricing change affects two different ways to play.</p><a id="workflow-top" href="./docs/workflow.md" data-i18n="workflowLink">Read the agent workflow ↗</a></div>
+      </section>
+
+      <section id="play" class="demo-section" aria-labelledby="demo-title">
+        <div class="section-heading">
+          <div><p class="eyebrow" data-i18n="playable">Deterministic playable example</p><h2 id="demo-title">Lantern Expedition</h2></div>
+          <div class="mode-switch" role="group" aria-label="Configuration" id="mode-group"><button type="button" data-mode="baseline" aria-pressed="true" data-i18n="before">Before</button><button type="button" data-mode="revised" aria-pressed="false" data-i18n="after">After</button></div>
+        </div>
+
+        <div class="play-layout">
+          <article class="game-card" aria-label="Playable expedition" id="game-card">
+            <div class="game-top"><span class="scenario-tag" id="scenario-tag" data-i18n="originalRules">Original rules</span><span class="game-clock"><svg aria-hidden="true" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 5v5l3 2"/></svg><span data-i18n="gameTime">Game time</span><strong id="time-value">—</strong></span></div>
+            <div id="island-scene" class="island-scene"></div>
+            <div class="progress-row"><span id="exploration-label" data-i18n="loading">Loading the game engine…</span><span id="progress-percent">—</span></div>
+            <div id="exploration-progress" class="progress-track" role="progressbar" aria-label="Exploration" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+            <div class="resource-grid">
+              <div><span data-i18n="supplies">Supplies</span><strong id="resources-value">—</strong><small id="yield-value">—</small></div>
+              <div><span data-i18n="lantern">Lantern level</span><strong id="level-value">—</strong><small id="level-note">—</small></div>
+              <div><span data-i18n="moves">Moves taken</span><strong id="turns-value">—</strong><small data-i18n="oneAction">One action per move</small></div>
+            </div>
+            <div class="action-grid">
+              <button type="button" class="action-button" data-action="gather" disabled><span class="action-icon" aria-hidden="true">✦</span><span data-i18n="gather">Gather</span><small id="gather-detail">—</small></button>
+              <button type="button" class="action-button" data-action="upgrade" disabled><span class="action-icon" aria-hidden="true">↑</span><span data-i18n="upgrade">Upgrade</span><small id="upgrade-detail">—</small></button>
+              <button type="button" class="action-button" data-action="explore" disabled><span class="action-icon" aria-hidden="true">↗</span><span data-i18n="explore">Explore</span><small id="explore-detail">—</small></button>
+            </div>
+            <div class="play-controls"><button type="button" id="autoplay-button" class="primary-button" disabled><span aria-hidden="true">▶</span><span id="autoplay-label" data-i18n="playStrategy">Play strategy</span></button><button type="button" id="reset-button" class="quiet-button" disabled data-i18n="reset">Reset expedition</button><span class="state-dot" id="state-dot" aria-hidden="true"></span></div>
+            <p id="move-message" class="move-message" data-i18n="loading">Loading the game engine…</p>
+            <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+          </article>
+
+          <aside class="comparison-card" aria-labelledby="comparison-title">
+            <div class="comparison-heading"><span class="section-number" aria-hidden="true">↔</span><div><p class="eyebrow" data-i18n="sameEngine">Same engine. Same starting state.</p><h3 id="comparison-title" data-i18n="comparison">What does the change do?</h3></div></div>
+            <label class="policy-label" for="policy-select"><span data-i18n="strategy">Strategy</span><select id="policy-select"><option value="upgrade-first" data-i18n="upgradeFirst">Upgrade first</option><option value="explore-first" data-i18n="exploreFirst">Explore first</option></select></label>
+            <p id="policy-description" class="policy-description"></p>
+            <div class="comparison-columns"><span></span><span data-i18n="before">Before</span><span data-i18n="after">After</span></div>
+            <div id="comparison-metrics" class="comparison-metrics"><p data-i18n="loading">Loading the game engine…</p></div>
+            <p id="tradeoff" class="tradeoff"></p>
+            <div class="configuration-heading"><h4 data-i18n="costMoves">Where the upgrade cost moves</h4><a id="config-source" href="./examples/lantern-expedition/baseline.json" data-i18n="viewConfig">View config ↗</a></div>
+            <div id="config-differences" class="config-differences"></div>
+            <p id="budget-note" class="budget-note"></p>
+            <details class="assumptions"><summary data-i18n="assumptions">What this comparison assumes</summary><p data-i18n="simTime">Times are simulated action times, not measured player times. Every comparison starts from a fresh expedition.</p><ul id="assumption-list"></ul><div class="source-links"><a href="./src/game.mjs" data-i18n="engineSource">Game engine</a><a href="./examples/lantern-expedition/baseline.json" data-i18n="beforeConfig">Before config</a><a href="./examples/lantern-expedition/revised.json" data-i18n="afterConfig">After config</a></div></details>
+          </aside>
+        </div>
+      </section>
+
+      <section class="workflow-section" aria-labelledby="roles-title">
+        <div class="workflow-intro"><div><p class="eyebrow" data-i18n="assistantTeam">The team runs in your assistant</p><h3 id="roles-title" data-i18n="rolesTitle">Five roles, explicit handoffs.</h3></div><a id="role-docs" href="./skills/game-design-team/references/roles.md" data-i18n="roleDocs">Meet the roles ↗</a></div>
+        <div class="role-strip"><a class="role-item" href="./docs/workflow.md"><span aria-hidden="true">01</span><strong data-i18n="roleLead">Design lead</strong><small data-i18n="roleLeadNote">Goal & decisions</small></a><a class="role-item" href="./docs/workflow.md"><span aria-hidden="true">02</span><strong data-i18n="roleSystems">Systems designer</strong><small data-i18n="roleSystemsNote">Rules & boundaries</small></a><a class="role-item" href="./docs/workflow.md"><span aria-hidden="true">03</span><strong data-i18n="roleEconomy">Economy designer</strong><small data-i18n="roleEconomyNote">Costs & progression</small></a><a class="role-item" href="./docs/workflow.md"><span aria-hidden="true">04</span><strong data-i18n="rolePrototype">Prototype developer</strong><small data-i18n="rolePrototypeNote">A playable loop</small></a><a class="role-item" href="./docs/workflow.md"><span aria-hidden="true">05</span><strong data-i18n="roleReviewer">Playtest reviewer</strong><small data-i18n="roleReviewerNote">Evidence & next tests</small></a></div>
+        <p class="honesty-note" data-i18n="honesty">This browser demo runs a deterministic game example. The agents run in your own AI assistant; this page does not call an AI model.</p>
+      </section>
+    </main>
+    <footer><span>Game Design Agents</span><span data-i18n="footer">An original, small example you can read, play, and change.</span><a href="https://github.com/yiyiwahmo28-hue/game-design-agents" target="_blank" rel="noopener noreferrer" data-i18n="openSource">Read the source ↗</a></footer>
+  </div>
+  <noscript><p class="noscript-note">JavaScript is needed to play this deterministic example. The game rules and workflow remain available in the repository.</p></noscript>
+</body>
+</html>
