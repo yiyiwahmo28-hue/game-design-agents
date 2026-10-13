@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "case": "rain-harbor",
+  "provenance": "An original fictional brief, executed by delegated assistants. Events are coordinator summaries recorded during the work, not chat transcripts.",
+  "mode": "Actual delegated work; system design, economy design and core implementation were combined in one delegate. UI implementation and independent review are separate assignments.",
+  "events": [
+    {
+      "recordedAt": "2026-10-13T02:05:26.769599+00:00",
+      "type": "dispatched",
+      "summary": "Coordinator authored the original brief and delegated system/economy design and engine implementation. A separate delegate owns the browser interface; another owns reusable first-run scaffolding.",
+      "artifacts": [
+        "docs/runs/rain-harbor/brief.md"
+      ]
+    },
+    {
+      "recordedAt": "2026-10-13T02:16:47.044282+00:00",
+      "type": "baseline-executed",
+      "summary": "Coordinator independently executed the first core implementation: rescue-first saved 12, prepare-first and optimal saved 18, and the best policy without preparation saved 16. A refused unaffordable rescue preserved state; prepare then refuel reached turn 2 with 7 fuel. Browser integration remains pending at this event.",
+      "artifacts": [
+        "src/harbor.mjs",
+        "examples/rain-harbor/baseline.json",
+        "docs/runs/rain-harbor/design.md"
+      ]
+    }
+  ]
+}
