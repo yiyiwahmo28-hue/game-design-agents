@@ -1,7 +1,8 @@
 const CONFIG_KEYS = ['schemaVersion', 'id', 'title', 'turnLimit', 'initialFuel',
-  'refuelAmount', 'preparedRefuelAmount', 'prepareCost', 'boats'];
-const STATE_KEYS = ['configId', 'turn', 'fuel', 'prepared', 'rescuedIds',
+  'refuelAmount', 'preparedRefuelAmount', 'prepareCost', 'boats', 'undoLimit'];
+const BASE_KEYS = ['configId', 'turn', 'fuel', 'prepared', 'rescuedIds',
   'rescuedPeople', 'ended', 'endReason', 'fuelGained', 'fuelSpent'];
+const STATE_KEYS = [...BASE_KEYS, 'undoRemaining', 'undoUsed', 'history'];
 const POLICIES = ['rescue-first', 'prepare-first', 'optimal'];
 
 function record(value, label) {
@@ -45,6 +46,7 @@ export function validateConfig(config) {
   integer(config.refuelAmount, 1, 12, 'config.refuelAmount');
   integer(config.preparedRefuelAmount, 1, 24, 'config.preparedRefuelAmount');
   integer(config.prepareCost, 1, 30, 'config.prepareCost');
+  if (config.undoLimit !== undefined) integer(config.undoLimit, 0, 1, 'config.undoLimit');
   if (!Array.isArray(config.boats) || config.boats.length < 1 || config.boats.length > 6) {
     throw new RangeError('config.boats must contain 1 to 6 boats');
   }
@@ -62,8 +64,13 @@ export function validateConfig(config) {
   return true;
 }
 
+function baseState(state) {
+  return Object.fromEntries(BASE_KEYS.map((key) => [key, key === 'rescuedIds' ? [...state.rescuedIds] : state[key]]));
+}
+
 function copyState(state) {
-  return { ...state, rescuedIds: [...state.rescuedIds] };
+  return { ...baseState(state), undoRemaining: state.undoRemaining, undoUsed: state.undoUsed,
+    history: state.history === null ? null : { action: state.history.action, before: baseState(state.history.before) } };
 }
 
 function endReason(config, state) {
@@ -72,9 +79,9 @@ function endReason(config, state) {
   return null;
 }
 
-function validateState(config, state) {
+function validateBaseState(config, state) {
   record(state, 'state');
-  knownKeys(state, STATE_KEYS, 'state');
+  knownKeys(state, BASE_KEYS, 'state');
   if (state.configId !== config.id) throw new TypeError('state.configId does not match config.id');
   integer(state.turn, 0, config.turnLimit, 'state.turn');
   const maxFuel = config.initialFuel + config.turnLimit * Math.max(config.refuelAmount, config.preparedRefuelAmount);
@@ -118,16 +125,43 @@ function validateState(config, state) {
   }
 }
 
+function sameBase(left, right) {
+  return BASE_KEYS.every((key) => key === 'rescuedIds'
+    ? JSON.stringify(left[key]) === JSON.stringify(right[key]) : left[key] === right[key]);
+}
+
+function validateState(config, state) {
+  record(state, 'state');
+  knownKeys(state, STATE_KEYS, 'state');
+  validateBaseState(config, baseState(state));
+  const limit = config.undoLimit ?? 0;
+  if (typeof state.undoUsed !== 'boolean') throw new TypeError('state.undoUsed must be a boolean');
+  integer(state.undoRemaining, 0, 1, 'state.undoRemaining');
+  if (state.undoRemaining !== limit - Number(state.undoUsed)) {
+    throw new RangeError('state undo allowance does not match its spent flag');
+  }
+  if (state.history === null) {
+    if (state.undoRemaining > 0 && state.turn > 0) throw new TypeError('state is missing its last successful action');
+    return;
+  }
+  if (state.undoRemaining === 0) throw new TypeError('state cannot retain usable history after spending its allowance');
+  record(state.history, 'state.history');
+  knownKeys(state.history, ['action', 'before'], 'state.history');
+  validateBaseState(config, state.history.before);
+  const action = normalActions(config, state.history.before).find((item) => item.id === state.history.action);
+  if (!action || !action.available || !sameBase(applyNormal(config, state.history.before, action), state)) {
+    throw new TypeError('state history does not reproduce the last successful action');
+  }
+}
+
 export function createState(config) {
   validateConfig(config);
   return { configId: config.id, turn: 0, fuel: config.initialFuel, prepared: false,
-    rescuedIds: [], rescuedPeople: 0, ended: false, endReason: null, fuelGained: 0, fuelSpent: 0 };
+    rescuedIds: [], rescuedPeople: 0, ended: false, endReason: null, fuelGained: 0, fuelSpent: 0,
+    undoRemaining: config.undoLimit ?? 0, undoUsed: false, history: null };
 }
 
-/** UI previews and the execution path use the same affordability and eligibility. */
-export function getActions(config, state) {
-  validateConfig(config);
-  validateState(config, state);
+function normalActions(config, state) {
   const actions = [
     { id: 'refuel', type: 'refuel', boatId: null, label: 'Refuel', cost: 0,
       gain: state.prepared ? config.preparedRefuelAmount : config.refuelAmount,
@@ -159,13 +193,32 @@ export function getActions(config, state) {
   });
 }
 
-export function step(config, state, actionId) {
-  const action = getActions(config, state).find((item) => item.id === actionId);
-  if (!action) return { ok: false, state: copyState(state), event: null,
-    error: { code: 'unknown-action', message: 'Unknown harbor action.' } };
-  if (!action.available) return { ok: false, state: copyState(state), event: null,
-    error: { code: action.reasonCode, message: action.reason } };
-  const next = copyState(state);
+/** One bounded snapshot, without quota or nested history, captures the restore target. */
+export function getActions(config, state) {
+  validateConfig(config);
+  validateState(config, state);
+  let reasonCode = null;
+  let reason = null;
+  if ((config.undoLimit ?? 0) === 0) {
+    reasonCode = 'undo-disabled';
+    reason = 'Undo is not enabled in this original version.';
+  } else if (state.undoRemaining === 0) {
+    reasonCode = 'undo-spent';
+    reason = 'The one undo allowance has already been spent.';
+  } else if (state.history === null) {
+    reasonCode = 'nothing-to-undo';
+    reason = 'There is no successful action to undo yet.';
+  }
+  const restores = state.history === null ? null : { action: state.history.action, ...baseState(state.history.before) };
+  const undo = { id: 'undo', type: 'undo', boatId: null, label: 'Undo last action', cost: 0,
+    gain: restores === null ? 0 : restores.fuel - state.fuel,
+    people: restores === null ? 0 : restores.rescuedPeople - state.rescuedPeople,
+    turnCost: 0, nextRefuelAmount: null, available: reasonCode === null, reasonCode, reason, restores };
+  return [...normalActions(config, state), undo];
+}
+
+function applyNormal(config, state, action) {
+  const next = baseState(state);
   next.turn += action.turnCost;
   next.fuel += action.gain - action.cost;
   next.fuelGained += action.gain;
@@ -177,10 +230,27 @@ export function step(config, state, actionId) {
   }
   next.endReason = endReason(config, next);
   next.ended = next.endReason !== null;
+  validateBaseState(config, next);
+  return next;
+}
+
+export function step(config, state, actionId) {
+  const action = getActions(config, state).find((item) => item.id === actionId);
+  if (!action) return { ok: false, state: copyState(state), event: null,
+    error: { code: 'unknown-action', message: 'Unknown harbor action.' } };
+  if (!action.available) return { ok: false, state: copyState(state), event: null,
+    error: { code: action.reasonCode, message: action.reason } };
+  const undo = action.type === 'undo';
+  const next = undo
+    ? { ...baseState(state.history.before), undoRemaining: 0, undoUsed: true, history: null }
+    : { ...applyNormal(config, state, action), undoRemaining: state.undoRemaining, undoUsed: state.undoUsed,
+      history: state.undoRemaining > 0 ? { action: action.id, before: baseState(state) } : null };
   validateState(config, next);
   return { ok: true, state: next, error: null, event: {
     action: action.id, type: action.type, boatId: action.boatId, turn: next.turn,
     cost: action.cost, gain: action.gain, people: action.people, state: copyState(next),
+    undoneAction: undo ? state.history.action : null,
+    restored: undo ? baseState(next) : null,
   } };
 }
 
@@ -193,7 +263,7 @@ function stateKey(config, state) {
   return `${state.turn}:${state.fuel}:${Number(state.prepared)}:${mask}`;
 }
 
-/** Every accepted action consumes one turn, making this graph finite and acyclic. */
+/** Forward actions consume one turn; undo is excluded from this finite acyclic search. */
 function makeSolver(config, allowPreparation = true) {
   const memo = new Map();
   function solve(state) {
@@ -205,7 +275,7 @@ function makeSolver(config, allowPreparation = true) {
       return result;
     }
     let best = null;
-    for (const action of getActions(config, state).filter((item) => item.available && (allowPreparation || item.type !== 'prepare'))) {
+    for (const action of getActions(config, state).filter((item) => item.available && item.type !== 'undo' && (allowPreparation || item.type !== 'prepare'))) {
       const next = step(config, state, action.id).state;
       const result = solve(next);
       if (best === null || result.people > best.people
@@ -222,7 +292,7 @@ function makeSolver(config, allowPreparation = true) {
 }
 
 function mostPeople(boats) {
-  return [...boats].sort((a, b) => b.people - a.people || a.fuelCost - b.fuelCost || a.id.localeCompare(b.id))[0];
+  return [...boats].sort((a, b) => b.people - a.people || a.fuelCost - b.fuelCost || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))[0];
 }
 
 export function chooseAction(config, state, policy = 'rescue-first') {
@@ -252,11 +322,13 @@ function assumptions(config, policy) {
       ? 'Prepare first, then save fuel for the remaining boat with the most passengers; on the last turn rescue the most passengers currently affordable.'
       : 'Maximize final rescued people by finite-state search; ties prefer fewer turns, then more remaining fuel, then the declared action order.';
   return [
-    `Starts with ${config.initialFuel} fuel; every accepted action uses one of ${config.turnLimit} turns.`,
+    `Starts with ${config.initialFuel} fuel; every accepted forward action uses one of ${config.turnLimit} turns.`,
     `Refuel gains ${config.refuelAmount} before preparation and ${config.preparedRefuelAmount} after it; preparation costs ${config.prepareCost} fuel and one turn, once only.`,
     'Each boat can be rescued once; its entire passenger count is saved for its listed fuel cost.',
     'The final permitted action takes effect before closure; rescuing every boat ends the run early.',
     rule,
+    (config.undoLimit ?? 0) === 0 ? 'Undo is disabled in this original configuration.'
+      : 'One undo is available to manual play; this declared policy does not use it.',
     'Deterministic declared policies and model optimization are not human-player observations.',
   ];
 }
@@ -322,7 +394,7 @@ export function analyze(config) {
     if (state.ended || state.turn !== config.turnLimit - 1) continue;
     const available = getActions(config, state).filter((action) => action.available);
     if (!available.some((action) => action.id === 'prepare')) continue;
-    const rescue = available.filter((action) => action.type === 'rescue').sort((a, b) => b.people - a.people || a.id.localeCompare(b.id))[0];
+    const rescue = available.filter((action) => action.type === 'rescue').sort((a, b) => b.people - a.people || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))[0];
     if (!rescue) continue;
     const prepared = step(config, state, 'prepare');
     const rescued = step(config, state, rescue.id);
@@ -332,10 +404,13 @@ export function analyze(config) {
       break;
     }
   }
-  return { objective: 'maximize-rescued-people', optimalRescuedPeople: best.people,
+  return { objective: 'maximize-rescued-people', searchScope: 'forward-actions-only-no-undo', optimalRescuedPeople: best.people,
     optimalWithoutPreparation: bestWithout.people, analysisStates: solver.visited(),
     noPreparationStates: noPreparation.visited(), optimalWitness: replaySolution(config, solver, initial),
+    optimalWithoutPreparationWitness: replaySolution(config, noPreparation, initial),
     firstActions, latePreparationCounterexample,
-    limitations: ['Optimal means only the stated passenger-count objective under this finite deterministic model.',
+    limitations: ['Search excludes undo actions and undo histories. It does not enumerate all revised states.',
+      'Undo discards an action and restores an earlier reachable position without preserving its benefit. It cannot raise the ideal-information maximum in this fixed deterministic model.',
+      'Optimal means only the stated passenger-count objective under this finite deterministic model.',
       'A higher rescued count does not prove that players understand or prefer this design.'] };
 }

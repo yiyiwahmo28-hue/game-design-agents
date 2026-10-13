@@ -1,15 +1,17 @@
 {
   "name": "game-design-agents",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Your AI game design team. Turn ideas into playable, tunable systems.",
   "type": "module",
   "license": "MIT",
   "engines": { "node": ">=22" },
   "scripts": {
+    "new": "node scripts/new-run.mjs",
     "start": "node scripts/serve.mjs",
     "test": "node --test",
-    "simulate": "node scripts/simulate.mjs --write",
-    "verify": "node scripts/simulate.mjs --check"
+    "audit": "node scripts/review-harbor.mjs",
+    "simulate": "node scripts/simulate.mjs --write && node scripts/harbor-evidence.mjs --write",
+    "verify": "node scripts/simulate.mjs --check && node scripts/harbor-evidence.mjs --check"
   }
 }

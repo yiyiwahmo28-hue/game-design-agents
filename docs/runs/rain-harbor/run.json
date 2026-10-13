@@ -10,7 +10,8 @@
       "summary": "Coordinator authored the original brief and delegated system/economy design and engine implementation. A separate delegate owns the browser interface; another owns reusable first-run scaffolding.",
       "artifacts": [
         "docs/runs/rain-harbor/brief.md"
-      ]
+      ],
+      "summaryZh": "协调者编写原创需求，实际分派系统与数值设计、核心实现、浏览器界面和首次使用入口。"
     },
     {
       "recordedAt": "2026-10-13T02:16:47.044282+00:00",
@@ -20,6 +21,84 @@
         "src/harbor.mjs",
         "examples/rain-harbor/baseline.json",
         "docs/runs/rain-harbor/design.md"
+      ],
+      "summaryZh": "独立运行首版：先救人12人，先准备与模型最优18人；禁止准备时最优16人。失败救援不改变状态。此时浏览器整合尚未完成。"
+    },
+    {
+      "recordedAt": "2026-10-13T02:19:36.905468+00:00",
+      "type": "first-prototype-observed",
+      "summary": "Coordinator operated the first browser prototype before the follow-up request. An unaffordable ferry was disabled; prepare then refuel produced 7 fuel on turn 2; rescuing the trawler then produced 6 rescued people, 1 fuel and turn 3.",
+      "artifacts": [
+        "index.html",
+        "demo/workflow.mjs",
+        "src/harbor.mjs",
+        "examples/rain-harbor/baseline.json"
+      ],
+      "summaryZh": "追加需求前，已实际操作首版浏览器：准备、补给后为第2回合7燃油，再救援拖网船后为第3回合1燃油、6人获救。"
+    },
+    {
+      "recordedAt": "2026-10-13T02:19:44.716099+00:00",
+      "type": "revision-requested",
+      "summary": "After operating the first prototype, the coordinator requested one undo per run: restore the last successful action including terminal state, keep the allowance spent, and preserve all original economic parameters.",
+      "artifacts": [
+        "docs/runs/rain-harbor/change-request.md"
+      ],
+      "summaryZh": "每局允许撤销一次成功操作，恢复燃油、救援和回合；关港后也能撤销，额度不能恢复。保留原版及所有经济参数。"
+    },
+    {
+      "recordedAt": "2026-10-13T02:31:44.402504+00:00",
+      "type": "review-finding",
+      "summary": "Independent browser review found a stale instruction: the revised game still said every accepted action advances the storm, contradicting successful undo restoring the prior turn. The finding was returned to the interface delegate for correction.",
+      "artifacts": [
+        "demo/workflow.mjs",
+        "docs/runs/rain-harbor/change-request.md"
+      ],
+      "summaryZh": "独立审查发现旧提示仍说所有成功操作都会推进风暴，与撤销规则冲突；问题交回界面作者修复。"
+    },
+    {
+      "recordedAt": "2026-10-13T02:51:12.714743+00:00",
+      "type": "revision-verified",
+      "summary": "The follow-up revision passed 42 behavior/tool tests, 10 reproducible scenario assertions, and an independent transition oracle. The reviewer rechecked the corrected instructions in both languages. The coordinator operated the final five-stage browser workflow and mobile controls with zero console errors.",
+      "summaryZh": "改稿通过42项行为与工具测试、10项可复现场景检查和独立规则审查。旧提示已修复并在中英文复查；协调者实际操作最终五步页面和手机布局，控制台无错误。",
+      "artifacts": [
+        "docs/runs/rain-harbor/evidence.json",
+        "docs/runs/rain-harbor/review.md",
+        "docs/runs/rain-harbor/browser-verification.json"
+      ]
+    }
+  ],
+  "baselineCommit": "bf68a676fdcff36884da1522e00e6492748dd6d2",
+  "handoffNote": "Factual coordinator summaries of actual assignments and delivered artifacts; not verbatim agent dialogue. Responsibilities were combined as recorded.",
+  "handoffs": [
+    {
+      "from": "Coordinator",
+      "to": "Systems / economy / core delegate",
+      "summary": "A storm deadline, one shared fuel resource, and a visible preparation-versus-rescue choice. The delegate owns the rules, inputs, and shared engine.",
+      "summaryZh": "需求交给系统与数值：风暴期限、共享燃油、准备与立即救人的取舍；同一受派助手负责规则、参数和核心实现。",
+      "artifacts": [
+        "docs/runs/rain-harbor/brief.md",
+        "docs/runs/rain-harbor/design.md"
+      ]
+    },
+    {
+      "from": "Systems / economy / core delegate",
+      "to": "Browser interface delegate",
+      "summary": "Seven turns, four boats, and a shared action-preview / transition API. The interface reads actual costs and outcomes from the engine.",
+      "summaryZh": "规则交给原型界面：7回合、4艘船，共用动作预览和状态变化接口；按钮的成本与结果从核心规则读取。",
+      "artifacts": [
+        "src/harbor.mjs",
+        "examples/rain-harbor/baseline.json",
+        "demo/workflow.mjs"
+      ]
+    },
+    {
+      "from": "Core and interface delegates",
+      "to": "Coordinator",
+      "summary": "The first build was executed and operated before revision. A rescue changed fuel, passengers and turns consistently in the browser.",
+      "summaryZh": "原型交回协调者：追加修改前已实际运行和操作；浏览器救援同时更新燃油、获救人数和回合，并保留首版。",
+      "artifacts": [
+        "docs/runs/rain-harbor/first-browser.json",
+        "docs/runs/rain-harbor/baseline-observation.json"
       ]
     }
   ]

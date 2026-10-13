@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "rain-harbor-revised",
+  "title": "Rain Harbor — One Undo",
+  "turnLimit": 7,
+  "initialFuel": 4,
+  "refuelAmount": 2,
+  "preparedRefuelAmount": 5,
+  "prepareCost": 2,
+  "boats": [
+    { "id": "dinghy", "name": "Dinghy", "fuelCost": 2, "people": 2 },
+    { "id": "skiff", "name": "Skiff", "fuelCost": 4, "people": 4 },
+    { "id": "trawler", "name": "Trawler", "fuelCost": 6, "people": 6 },
+    { "id": "ferry", "name": "Ferry", "fuelCost": 8, "people": 10 }
+  ],
+  "undoLimit": 1
+}

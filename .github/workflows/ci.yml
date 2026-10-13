@@ -12,7 +12,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test the shared game engine
+      - name: Test shared engines and the first-run tools
         run: npm test
-      - name: Check reproducible simulation evidence
+      - name: Compare Rain Harbor against the independent rule oracle
+        run: npm run audit
+      - name: Check evidence for both original cases
         run: npm run verify

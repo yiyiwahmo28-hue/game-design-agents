@@ -1,0 +1,37 @@
+{
+  "capturedAt": "2026-10-13T02:19:01.560Z",
+  "initial": {
+    "configId": "rain-harbor-baseline",
+    "turn": 0,
+    "fuel": 4,
+    "prepared": false,
+    "rescuedIds": [],
+    "rescuedPeople": 0,
+    "ended": false,
+    "endReason": null,
+    "fuelGained": 0,
+    "fuelSpent": 0
+  },
+  "observed": {
+    "configId": "rain-harbor-baseline",
+    "turn": 3,
+    "fuel": 1,
+    "prepared": true,
+    "rescuedIds": [
+      "trawler"
+    ],
+    "rescuedPeople": 6,
+    "ended": false,
+    "endReason": null,
+    "fuelGained": 5,
+    "fuelSpent": 8
+  },
+  "checks": [
+    "Unaffordable ferry disabled",
+    "Prepare then refuel uses shared 5-fuel gain",
+    "Rescue changes fuel, people and turns"
+  ],
+  "remaining": "Revision and final evidence not delivered at this checkpoint.",
+  "applicationErrors": [],
+  "resourceNote": "404 responses for not-yet-delivered revision and evidence resources were excluded from this first-build application-error list. The final browser verification checks all console errors without that exclusion."
+}

@@ -1,0 +1,645 @@
+{
+  "source": "Actual browser screenshots of the completed workflow viewer and real game actions. Replay timing is edited; no live model execution is represented.",
+  "recordings": [
+    {
+      "language": "en",
+      "frames": 12,
+      "size": [
+        1240,
+        932
+      ],
+      "durationMs": 28750,
+      "bytes": 679990,
+      "sequence": [
+        {
+          "duration": 3400,
+          "label": "Original fictional brief, actual completed case",
+          "capturedAt": "2026-10-13T02:52:12.873Z",
+          "snapshot": {
+            "step": "brief",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 3700,
+          "label": "Actual ownership and handoff summaries linked to artifacts",
+          "capturedAt": "2026-10-13T02:52:13.586Z",
+          "snapshot": {
+            "step": "design",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 1500,
+          "label": "Original playable version before any action",
+          "capturedAt": "2026-10-13T02:52:14.353Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Prepare spends fuel and a turn",
+          "capturedAt": "2026-10-13T02:52:15.100Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 1,
+              "fuel": 2,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Prepared refuel gains five fuel",
+          "capturedAt": "2026-10-13T02:52:15.842Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 2,
+              "fuel": 7,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 5,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Another actual refuel",
+          "capturedAt": "2026-10-13T02:52:16.532Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 3,
+              "fuel": 12,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 2400,
+          "label": "Actual ferry rescue: ten people saved",
+          "capturedAt": "2026-10-13T02:52:17.277Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 4,
+              "fuel": 4,
+              "prepared": true,
+              "rescuedIds": [
+                "ferry"
+              ],
+              "rescuedPeople": 10,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 10,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 4200,
+          "label": "Follow-up request issued after the first prototype was operated",
+          "capturedAt": "2026-10-13T02:52:17.999Z",
+          "snapshot": {
+            "step": "change",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 4,
+              "fuel": 4,
+              "prepared": true,
+              "rescuedIds": [
+                "ferry"
+              ],
+              "rescuedPeople": 10,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 10,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 1700,
+          "label": "Revised version starts fresh with one undo allowance",
+          "capturedAt": "2026-10-13T02:52:19.201Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 1,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 2400,
+          "label": "Rescue a boat; the undo preview shows the state it will restore",
+          "capturedAt": "2026-10-13T02:52:19.954Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 1,
+              "fuel": 0,
+              "prepared": false,
+              "rescuedIds": [
+                "skiff"
+              ],
+              "rescuedPeople": 4,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 4,
+              "undoRemaining": 1,
+              "undoUsed": false,
+              "history": {
+                "action": "rescue:skiff",
+                "before": {
+                  "configId": "rain-harbor-revised",
+                  "turn": 0,
+                  "fuel": 4,
+                  "prepared": false,
+                  "rescuedIds": [],
+                  "rescuedPeople": 0,
+                  "ended": false,
+                  "endReason": null,
+                  "fuelGained": 0,
+                  "fuelSpent": 0
+                }
+              }
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 3200,
+          "label": "Undo restores fuel, passengers and turns; allowance stays spent",
+          "capturedAt": "2026-10-13T02:52:20.679Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": true,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 4300,
+          "label": "Actual reproducible revision checks and evidence links",
+          "capturedAt": "2026-10-13T02:52:21.491Z",
+          "snapshot": {
+            "step": "verify",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": true,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        }
+      ]
+    },
+    {
+      "language": "zh",
+      "frames": 12,
+      "size": [
+        1240,
+        932
+      ],
+      "durationMs": 28750,
+      "bytes": 690249,
+      "sequence": [
+        {
+          "duration": 3400,
+          "label": "Original fictional brief, actual completed case",
+          "capturedAt": "2026-10-13T02:52:22.239Z",
+          "snapshot": {
+            "step": "brief",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 3700,
+          "label": "Actual ownership and handoff summaries linked to artifacts",
+          "capturedAt": "2026-10-13T02:52:22.963Z",
+          "snapshot": {
+            "step": "design",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 1500,
+          "label": "Original playable version before any action",
+          "capturedAt": "2026-10-13T02:52:23.686Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Prepare spends fuel and a turn",
+          "capturedAt": "2026-10-13T02:52:24.403Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 1,
+              "fuel": 2,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Prepared refuel gains five fuel",
+          "capturedAt": "2026-10-13T02:52:25.115Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 2,
+              "fuel": 7,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 5,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 650,
+          "label": "Another actual refuel",
+          "capturedAt": "2026-10-13T02:52:25.844Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 3,
+              "fuel": 12,
+              "prepared": true,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 2,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 2400,
+          "label": "Actual ferry rescue: ten people saved",
+          "capturedAt": "2026-10-13T02:52:26.578Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 4,
+              "fuel": 4,
+              "prepared": true,
+              "rescuedIds": [
+                "ferry"
+              ],
+              "rescuedPeople": 10,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 10,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 4200,
+          "label": "Follow-up request issued after the first prototype was operated",
+          "capturedAt": "2026-10-13T02:52:27.325Z",
+          "snapshot": {
+            "step": "change",
+            "state": {
+              "configId": "rain-harbor-baseline",
+              "turn": 4,
+              "fuel": 4,
+              "prepared": true,
+              "rescuedIds": [
+                "ferry"
+              ],
+              "rescuedPeople": 10,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 10,
+              "fuelSpent": 10,
+              "undoRemaining": 0,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-baseline"
+          }
+        },
+        {
+          "duration": 1700,
+          "label": "Revised version starts fresh with one undo allowance",
+          "capturedAt": "2026-10-13T02:52:28.501Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 1,
+              "undoUsed": false,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 2400,
+          "label": "Rescue a boat; the undo preview shows the state it will restore",
+          "capturedAt": "2026-10-13T02:52:29.240Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 1,
+              "fuel": 0,
+              "prepared": false,
+              "rescuedIds": [
+                "skiff"
+              ],
+              "rescuedPeople": 4,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 4,
+              "undoRemaining": 1,
+              "undoUsed": false,
+              "history": {
+                "action": "rescue:skiff",
+                "before": {
+                  "configId": "rain-harbor-revised",
+                  "turn": 0,
+                  "fuel": 4,
+                  "prepared": false,
+                  "rescuedIds": [],
+                  "rescuedPeople": 0,
+                  "ended": false,
+                  "endReason": null,
+                  "fuelGained": 0,
+                  "fuelSpent": 0
+                }
+              }
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 3200,
+          "label": "Undo restores fuel, passengers and turns; allowance stays spent",
+          "capturedAt": "2026-10-13T02:52:29.998Z",
+          "snapshot": {
+            "step": "prototype",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": true,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        },
+        {
+          "duration": 4300,
+          "label": "Actual reproducible revision checks and evidence links",
+          "capturedAt": "2026-10-13T02:52:30.846Z",
+          "snapshot": {
+            "step": "verify",
+            "state": {
+              "configId": "rain-harbor-revised",
+              "turn": 0,
+              "fuel": 4,
+              "prepared": false,
+              "rescuedIds": [],
+              "rescuedPeople": 0,
+              "ended": false,
+              "endReason": null,
+              "fuelGained": 0,
+              "fuelSpent": 0,
+              "undoRemaining": 0,
+              "undoUsed": true,
+              "history": null
+            },
+            "configId": "rain-harbor-revised"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -8,6 +8,17 @@ The design method is inspired by the author's game systems work. All public inst
 
 ## Use the complete repository
 
+For a new idea, follow the [first-run guide](start-your-game.md) and run
+`npm run new -- --name my-game --brief "Your game brief"`.
+This prepares an isolated workspace and a complete prompt. Execute that prompt
+in an assistant with file and command tools, then launch its delivered prototype.
+The starter does not call a model or generate the game itself.
+
+The [Rain Harbor execution record](runs/rain-harbor/README.md) retains an original
+brief, design handoffs, first implementation, follow-up revision, independent
+review, and reproducible evidence. The homepage replays those artifacts and
+provides the actual playable versions.
+
 Describe the intended player experience, current behavior, requested change, and what the assistant may edit or run. Existing authorization remains valid within that scope. A balance adjustment need not trigger a new approval at every role boundary.
 
 Ask an assistant to use the [game-design-team skill](../skills/game-design-team/SKILL.md). The assistant first checks its actual delegation capabilities. When real subagents are available, it can allocate independent analysis or nonoverlapping edits. Otherwise it applies the roles sequentially and states that the review is a self-review.

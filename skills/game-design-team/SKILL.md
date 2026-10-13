@@ -2,7 +2,7 @@
 name: game-design-team
 description: Coordinate game system design, economy modeling, prototyping, and evidence review when creating or revising a playable mechanic.
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Game Design Team
@@ -35,6 +35,14 @@ Read [references/roles.md](references/roles.md) when allocating work.
 - Optional host-specific role files may exist in a complete repository. Their presence alone does not prove the host has loaded them. Do not assume a particular tool, model, or native custom-agent registration.
 
 The coordinator owns integration and open decisions. Specialists own their assigned artifacts, not every file suggested by their job title. Route a defect by the actual execution path: a table, implementation, simulator, or presentation may be responsible regardless of who reported it.
+
+## Deliver a new game brief
+
+For a new playable mechanic or an end-to-end delivery, read [references/delivery.md](references/delivery.md). Carry the brief through decisions, authoritative configuration, actual implementation, execution, and review. Deliver the relevant design explanation, parameters, playable build, verification record, and factual run log; reuse existing equivalents instead of imposing a new folder layout on every task.
+
+A repository starter may provide a brief, empty output directories, and a delivery manifest. These are preparation, not generated work or proof that agents ran. Fill the real artifacts, record actual execution mode, and provide working launch instructions. A file-completeness check only detects absent deliverables.
+
+When a revision is requested, retain a reproducible baseline, trace the affected consumers, apply the authorized change, and verify both the intended difference and preserved constraints. Do not invent a second user request or playtest feedback to make the workflow appear complete.
 
 ## Make and propagate the change
 
