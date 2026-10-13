@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "case": "signal-camp",
+  "provenance": "Original fictional redesign exercise requested by the maintainer; factual coordinator summaries of actual work, not reconstructed transcripts or human playtest findings.",
+  "executionMode": "delegated",
+  "assignments": [
+    {
+      "role": "Coordinator",
+      "scope": "Scope, design decisions, integration, case narrative, actual browser capture and publication"
+    },
+    {
+      "role": "Systems / economy / core delegate",
+      "scope": "Design proposal, configuration, shared engine, author tests and reproducible evidence"
+    },
+    {
+      "role": "Interface delegate",
+      "scope": "Bilingual comparison UI and working controls against the shared engine"
+    },
+    {
+      "role": "Independent review delegate",
+      "scope": "Challenge design claims, implement a separate rule oracle, independently operate the browser and recheck findings"
+    }
+  ],
+  "events": [
+    {
+      "recordedAt": "2026-10-13T05:12:12.342564+00:00",
+      "type": "design-selected",
+      "summary": "The coordinator selected the delegated six-turn proposal: preserve the income schedule, split the bundle into two equal-cost modules, disclose the early window and compare rescue versus mapping objectives. Independent design review required showing displaced waiting, extra setup actions and the dominated legacy bundle route.",
+      "artifacts": [
+        "docs/runs/signal-camp/brief.md"
+      ]
+    },
+    {
+      "recordedAt": "2026-10-13T05:24:19.631757+00:00",
+      "type": "model-verified",
+      "summary": "The coordinator executed all 57 repository tests, regenerated all three case reports, reran both independent rule oracles and confirmed current evidence. Signal Camp has 12 passing assertions. The independent camp oracle covers every legal history prefix: 23 original and 299 revised.",
+      "artifacts": [
+        "docs/runs/signal-camp/evidence.json",
+        "scripts/review-camp.mjs",
+        "tests/camp.test.mjs"
+      ]
+    },
+    {
+      "recordedAt": "2026-10-13T05:28:45.960800+00:00",
+      "type": "browser-verified",
+      "summary": "Coordinator operated nine final browser scenarios with no console errors, including both complete routes, unchanged per-turn ledgers, objective reversal, keyboard navigation and mobile play. The independent reviewer separately completed its rule and browser review. Both 32-second GIFs were captured through actual controls with 13 retained frames per language.",
+      "artifacts": [
+        "docs/runs/signal-camp/browser-verification.json",
+        "docs/runs/signal-camp/review.md",
+        "docs/assets/demo-capture.json"
+      ]
+    },
+    {
+      "recordedAt": "2026-10-13T05:34:35.411779+00:00",
+      "type": "release-prepared",
+      "summary": "Encoded and visually inspected both real-browser GIFs (13 frames, 32 seconds); rendered both READMEs through GitHub; independently cross-checked final claims; scanned the package for private material and broken local links.",
+      "artifacts": [
+        "docs/assets/demo-capture.json",
+        "docs/assets/release-review.png",
+        "README.md",
+        "README.zh-CN.md"
+      ]
+    }
+  ]
+}

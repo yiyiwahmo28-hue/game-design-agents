@@ -4,33 +4,49 @@
 
 # Game Design Agents
 
-**Give your AI a game brief. Get a playable prototype. Change the rules and verify the result.**
+**Turn a game-design change into a playable result—with the tradeoffs and checks attached.**
 
-A design-to-delivery workflow for tool-enabled AI assistants, with an original case you can inspect and play.
+A Skill for AI coding assistants. Design the change, update the rules and parameters, then play and verify what changed.
 
-[![Version](https://img.shields.io/badge/version-0.2.0-176b61?style=flat-square)](package.json) [![Checks](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-176b61?style=flat-square)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.3.0-176b61?style=flat-square)](package.json) [![Checks](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml) [![MIT](https://img.shields.io/badge/license-MIT-176b61?style=flat-square)](LICENSE)
 
-[**Explore the real run & play**](https://yiyiwahmo28-hue.github.io/game-design-agents/) · [Start your game](#start-your-game) · [中文](README.zh-CN.md)
+[**Play the before & after**](https://yiyiwahmo28-hue.github.io/game-design-agents/) · [Start your game](#start-your-game) · [中文](README.zh-CN.md)
 
 </div>
 
-> “Make a game about rescuing boats before a storm. Preparing the boat and rescuing people now should both be meaningful choices.”
+> “Keep total resource production unchanged. Turn early waiting into a choice that matters.”
 
-<img src="docs/assets/demo-en.gif" width="1100" alt="Real delivery replay: brief, design handoff, playable prototype, follow-up rule change, and verification" />
+<img src="docs/assets/demo-en.gif" width="1100" alt="Signal Camp: play original and revised rules, compare early choices, and verify the unchanged resource budget" />
 
-*Actual browser captures of the completed execution record and working prototype, edited for length. The page replays retained artifacts; it does not call a model or simulate agents thinking. [Capture details](docs/demo.md) · [Full case](docs/runs/rain-harbor/README.md).*
+*Actual browser captures of the working comparison, edited for length. An original fictional design case, with retained implementation and review. [Capture details](docs/demo.md) · [Full case](docs/runs/signal-camp/README.md).*
 
-## The problem
+## Same resources. Earlier choices.
 
-Your assistant writes a design, another prompt produces a prototype, and a later rule change leaves the document, configuration, and game disagreeing. You have to discover the gaps yourself.
+In **Signal Camp**, the original sells both tools as a bundle. The player must wait three turns before buying it. The revision sells usable modules separately, so the first allocation decides which mission can catch the early window.
 
-This Skill carries a brief through design decisions, implementation, and checks. A change request includes its affected artifacts and the evidence needed to accept it.
+| Complete modeled route | People evacuated | Routes mapped | Supplies produced / spent / left |
+| --- | ---: | ---: | --- |
+| Original: wait for the bundle | 2 | 1 | 6 / 8 / 1 |
+| Revised: beacon first | 6 | 1 | 6 / 8 / 1 |
+| Revised: survey tools first | 2 | 3 | 6 / 8 / 1 |
 
-| You provide | You can inspect |
+All three start with **3 supplies**, receive **+1 after each of 6 turns**, and pay the same total facility and mission costs. The whole income schedule is unchanged. People and routes are mission outcomes, not spendable supplies.
+
+Change the assignment from evacuation to route preparation, and the successful first allocation reverses. The cost is visible too: two waits remain later, separate modules require an extra construction action, and the player must understand the decision sooner. The retained bundle is a dominated comparison route under these objectives.
+
+[Read the diagnosis, rejected alternatives and design costs →](docs/runs/signal-camp/README.md)
+
+## What this workflow does
+
+Changing a rule can leave the design document, parameter table and actual game disagreeing. This Skill tracks the relevant consumers and delivers a result you can inspect and operate.
+
+| You bring | The workflow delivers |
 | --- | --- |
-| A new gameplay brief | Design choices, rule specification, editable inputs, and a working prototype |
-| A change request | Its impact, updated behavior, preserved constraints, and before/after checks |
-| A result to review | Actual runs and findings, with missing evidence stated explicitly |
+| A new gameplay brief | Design decisions, rules, editable parameters and a playable prototype |
+| A pacing or balance change | A preserved baseline, alternatives, updated behavior and before/after evidence |
+| A result to review | Actual checks, findings, repairs and clearly identified gaps |
+
+Its [pacing-redesign guidance](skills/game-design-team/references/pacing-redesign.md) generalizes the method: freeze the accounting, locate the gate, expose the opportunity cost, test a context that reverses the choice, and show what the redesign costs. It imposes no universal reward curve or ideal session length.
 
 ## Start your game
 
@@ -39,7 +55,7 @@ Requires Node.js 22+ and an AI coding assistant that can read files, edit them, 
 ```sh
 git clone https://github.com/yiyiwahmo28-hue/game-design-agents.git
 cd game-design-agents
-npm run new -- --name my-game --brief "A rescue game with fuel, stranded boats, and a storm deadline."
+npm run new -- --name my-game --brief "Build a small camp game. Preserve total supply production while moving a consequential choice earlier."
 ```
 
 **Paste the printed prompt into your assistant with this repository open.** It points to the Skill and your new workspace. The command prepares files; your assistant performs the design and implementation using its own model and tools. Follow the generated `START_HERE.md` to inspect the delivery, run it, and request a change.
@@ -64,39 +80,29 @@ Ask your assistant to use `game-design-team` with your brief or change request. 
 npm start
 ```
 
-Open `http://127.0.0.1:4173` for the Rain Harbor execution replay and playable prototype. The earlier [Lantern Expedition](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html) remains available at `/lantern.html`.
+Open `http://127.0.0.1:4173` for the Signal Camp playable comparison. [Rain Harbor](https://yiyiwahmo28-hue.github.io/game-design-agents/harbor.html) remains at `/harbor.html`. The earlier [Lantern Expedition](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html) remains available at `/lantern.html`.
 
-`npm test` runs behavior and tool tests. `npm run simulate` regenerates evidence for both cases; `npm run verify` checks it against the current inputs and engine.
+`npm test` runs behavior and tool tests. `npm run audit` executes independent rule oracles. `npm run simulate` regenerates evidence for all three cases; `npm run verify` checks it against the current inputs and engine.
 
 </details>
 
-## A real brief → prototype → revision
+## Three inspectable cases
 
-**Rain Harbor** started from a [new fictional brief](docs/runs/rain-harbor/brief.md). The coordinator delegated system/economy design and core implementation, assigned the browser interface separately, and followed the first implementation with a new change request and independent review.
-
-The [complete case](docs/runs/rain-harbor/README.md) retains the design, actual handoff summaries, executable inputs, revision request, results, and limits. Responsibilities were combined where useful; the execution mode is recorded.
-
-The homepage makes the work inspectable and lets you play the result. The game and verification import the same rules module. Deterministic checks can be reproduced locally; generating a new game still requires your assistant and will vary by host and model.
-
-## How the team works
-
-| Responsibility | Owns |
+| Case | What to inspect |
 | --- | --- |
-| Design lead | Player goal, scope, choices, and integration |
-| Systems designer | Rules, boundaries, and acceptance scenarios |
-| Economy designer | Resource tradeoffs, assumptions, and scenario results |
-| Prototype developer | Running behavior through real code and configuration |
-| Playtest reviewer | Findings supported by artifacts and observations |
+| [Signal Camp](docs/runs/signal-camp/README.md) · [play](https://yiyiwahmo28-hue.github.io/game-design-agents/) | Diagnose a purchase gate, preserve income and prices, move choices earlier, expose the tradeoff |
+| [Rain Harbor](docs/runs/rain-harbor/README.md) · [play](https://yiyiwahmo28-hue.github.io/game-design-agents/harbor.html) | Deliver a new brief, then implement one undo without refunding its allowance or changing the economy |
+| [Lantern Expedition](docs/example.md) · [play](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html) | Explore gathering, investing in efficiency and spending on progress |
 
-Use the roles the task needs. Where the host supports callable subagents, delegate real work with explicit ownership. Otherwise, apply the roles sequentially and disclose self-review. [Workflow and compatibility →](docs/workflow.md)
+Design lead, systems, economy, implementation and review are responsibilities. Use only those the task needs. Real subagents can own separate work; otherwise the assistant applies the roles sequentially and discloses self-review. [Workflow and compatibility](docs/workflow.md).
 
-## What the evidence supports
+## Evidence and limits
 
-- A completed original case and a follow-up change, with retained implementation and verification artifacts.
-- Deterministic game behavior and reproducible scenario results.
-- An installable Skill and a workspace starter for your own briefs.
+Each demo shares its rules module with its generated evidence. The retained cases include actual execution and browser observations. Signal Camp's independent oracle examines all legal histories in this small model, including delays and rejected actions. [Release verification](docs/verification.md).
 
-The browser has no model backend. Tests do not establish player enjoyment, human comprehension, or multi-agent superiority. No controlled quality benchmark is claimed. Optional `.claude/agents/` definitions have not been exercised end to end in Claude Code. A generated workspace's completeness check confirms files exist; inspect and run them before accepting the work.
+The browser runs examples without an AI backend. Creating a new game requires an assistant; the starter's completeness check only confirms files exist. The examples do not prove reliable generation for arbitrary genres or hosts. Optional Claude Code adapters have not been exercised end to end in Claude Code.
+
+Signal Camp demonstrates allocation between two disclosed objectives. Each objective has a unique successful opening in this small model; it is not a claim of deep strategy. Whether people understand or prefer the redesign remains untested. The [human playtest plan](docs/runs/signal-camp/playtest-plan.md) is explicitly unexecuted. No retention lift or controlled multi-agent superiority is claimed.
 
 ## Contribute
 

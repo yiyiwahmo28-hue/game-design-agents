@@ -5,7 +5,8 @@ For game design, tuning, or a rule change, read
 Keep the user's intended game, choices, language, and authorized scope.
 
 The browser and simulation share their case's engine: `src/game.mjs` for
-Lantern Expedition and `src/harbor.mjs` for Rain Harbor. Change rules through
+Lantern Expedition, `src/harbor.mjs` for Rain Harbor, and `src/camp.mjs` for
+Signal Camp. Change rules through
 the relevant engine, not a parallel implementation in the UI. Example
 parameters are task-specific, not universal game design standards.
 

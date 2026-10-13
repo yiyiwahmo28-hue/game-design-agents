@@ -1,91 +1,108 @@
-# Release verification — v0.2.0
+# Release verification — v0.3.0
 
-This record describes checks actually performed on Windows with Node.js
-v24.15.0 and isolated Microsoft Edge browser instances. It is separate from the
-[historical v0.1.0 verification](verification-v0.1.md).
+This record describes checks actually executed for Signal Camp and the updated
+repository. Historical records remain available for [v0.2](verification-v0.2.md)
+and [v0.1](verification-v0.1.md). Local execution used Node.js v24.15.0 on
+Windows and fresh isolated Edge instances. GitHub's workflow runs Node.js 22.
 
-## New-brief delivery and independent review
+## Behavior and reproducible evidence
 
-The [Rain Harbor case](runs/rain-harbor/README.md) retains its original brief,
-design, real delegation summaries, first engine and browser observations,
-follow-up request, revision, and independent review.
+The coordinator executed `npm test`: **57 passed, zero failures and skips**.
+That includes 15 new camp behavior tests alongside the existing games and
+first-run tools. No test count is a claim about successful generation of that
+many different games.
 
-An independent reviewer implemented a separate transition oracle from the
-written rules. The baseline covered **217 reachable states, 441 accepted
-transitions, and 1,078 rejected transitions**. The revised model covered
-**659 states including history and allowance, 1,653 accepted transitions,
-3,619 rejected transitions, and 441 valid undos**, including 176 from ended
-states. An additional one-boat fixture checked undo after early completion.
+`npm run simulate` regenerated all three reports, and `npm run verify` accepted
+their current contents. Signal Camp's **12 named assertions** cover frozen
+baseline bytes, equal economic/mission parameters, per-turn income, early
+construction, exact deadlines, goal-dependent opening, exhaustive outcomes,
+remaining waits, dominated alternatives, conservation, final turns and
+nonrepeatable rewards. The core author also exercised stale-output rejection
+in an isolated copy; the production evidence was not edited by that test.
 
-The reviewer checked the original configuration's SHA-256, equality of all
-economic parameters, and the policy outcomes with no undo: 12 / 18 / 18 people
-in both versions. Those are declared policies and an ideal-information
-optimization; they are not measured player outcomes. Read the
-[independent review](runs/rain-harbor/review.md) for scope and findings.
+`npm run audit` ran both independent rule oracles. The new camp oracle was
+written from the frozen rules before inspecting the runtime implementation.
+It then compared every legal history, all available previews and rejected
+actions with the actual engine:
 
-The independent oracle is public: run `npm run audit` to reproduce that same
-state comparison and counts. It is also included in CI.
+| Independent camp check | Original | Revised |
+| --- | ---: | ---: |
+| Legal history prefixes | 23 | 299 |
+| Distinct economic states | 15 | 51 |
+| Accepted transitions | 22 | 298 |
+| Rejected transitions | 139 | 1,795 |
+| Full six-turn histories | 12 | 174 |
+| Gross income in every full history | 6 | 6 |
 
-A real presentation defect was found during revision review: the revised
-interface still said every accepted action advances the storm. The interface
-was corrected to distinguish refuel / prepare / rescue from undo.
+The reachable outcome frontier changes from `(2 people, 1 route)` to
+`(6,1)` or `(2,3)`. Neither revised route dominates the other; each meets a
+different disclosed objective. A first-turn delay cannot reach either hard
+objective. People and routes are outcomes, not spendable supply production.
+Read the [independent review](runs/signal-camp/review.md) for full scope.
 
-## Reproducible checks
+The original camp configuration still has the recorded SHA-256
+`1311086215dd2e785a22786d366842453e630139c9cd1fb163163d2afdfb80ec`.
+The [frozen control commit](https://github.com/yiyiwahmo28-hue/game-design-agents/commit/c832596)
+includes the executed baseline and shared source. The authorized modular
+branch was already present; the original brief requested both versions.
 
-`npm test` passed **42 tests**, with zero failures and skips. It exercises both shared engines, undo and state invariants, the
-first-run starter, and evidence tooling. `npm run verify` recomputes both cases'
-reports and rejects missing or stale output. The Rain Harbor report contains
-**10 passing named assertions** and the actual traces behind them.
+## Actual browser observations
 
-The starter was independently run in new isolated English and Chinese
-workspaces. UTF-8 text, multiline content, BOM and CRLF input were preserved;
-prompt references resolved; overwrite attempts were refused. An empty
-workspace correctly failed its completeness check. A passing completeness
-check establishes the declared files exist, not that an assistant ran or that
-the game is good.
+The Browser plugin was attempted and failed with Windows error 1385. Testing
+used fresh isolated Edge headless 148.0.3967.70 rather than a personal profile.
+The coordinator operated the real controls at desktop size and a 390px mobile
+viewport. The [nine-check browser record](runs/signal-camp/browser-verification.json)
+includes:
 
-The official Skill creator validator accepted the updated Skill. The prior
-release's installer exercise is retained in its historical record; no new
-Claude Code native-adapter execution is claimed.
+- Original first-turn restrictions and both affordable revised modules.
+- Complete rescue and mapping routes, with income/conservation checked after
+  every corresponding turn and correct terminal control disabling.
+- Changing the objective without changing the played result.
+- Language switching, design/evidence views, arrow-key navigation and actual
+  strategy playback.
+- Mobile manual operation and no horizontal overflow.
 
-## Browser observations
+The final coordinator pass recorded zero console errors. A separate reviewer
+also operated both routes, the original opening, the turn-three late window,
+independent panels, reset/replay and mobile controls. Its final English and
+Chinese recheck matched all 12 evidence checks and stored outcomes to the
+browser's actual engine. These checks are recorded separately in
+[independent browser observations](runs/signal-camp/independent-browser-review.json).
 
-The first prototype was operated before the follow-up request. Final browser
-checks cover:
+The interface author's checks measured all three desktop views at the same
+demo size and exercised both languages. Key captured frames were visually
+inspected before publication. A mobile viewport is not a physical-device
+compatibility study.
 
-- The original preparation and rescue behavior through actual controls.
-- Rescue, preparation and refuel undo; the allowance remains spent.
-- Undo after storm closure, reopening the prior turn, then continued play.
-- Reset and version switching, with a fresh allowance only for a fresh run.
-- English / Chinese display, arrow-key workflow navigation, and a 390px layout.
-- Actual retained brief, design handoffs, revision and evidence in the five steps.
+## Reusable guidance and demonstration
 
-The [browser record](runs/rain-harbor/browser-verification.json) lists the final
-coordinator checks. Browser inspections are performed by assistants; no human
-playtest has been conducted.
+The portable Skill adds a focused [pacing-redesign reference](../skills/game-design-team/references/pacing-redesign.md).
+It distinguishes production, spending and balance, then traces access gates,
+opportunity costs and the burden introduced by earlier choices. Its examples
+are not universal economy thresholds. The official Skill creator validator
+accepted the updated Skill; this is structural validation, not proof of
+generalization to unfamiliar projects.
 
-## Demonstration provenance
+The bilingual homepage GIFs are actual browser captures of Signal Camp,
+operated through the same controls available to visitors. Each contains 13
+captured frames and 32 seconds of edited playback. They show both objectives,
+middle waiting, final ledgers, reasoning and verification. [Capture details](demo.md)
+and [state snapshots](assets/demo-capture.json) distinguish the demonstration
+from live generation and human observation.
 
-The README GIFs contain real browser captures of the completed workflow viewer
-and actual gameplay. Playback is edited for length. The recorded viewer makes
-the retained collaboration inspectable; it does not portray agents currently
-running. [Capture details and state snapshots](demo.md).
+## Scope and remaining questions
 
-Each language's GIF contains 12 captured frames at 1240 × 932 pixels, with
-28.75 seconds of edited playback. The English file is 679,990 bytes and the
-Chinese file is 690,249 bytes. Key frames were visually inspected, and both
-GitHub-rendered README previews loaded their local logo and GIF successfully.
-The [release review image](assets/release-review.png) summarizes the impact,
-executed checks, remaining limits, and review focus.
+The original deliberately constrained case isolates a bundle-purchase gate.
+The revision still waits twice, uses another construction action and makes
+an incorrect opening consequential sooner. Each hard objective has a unique
+successful opening in this small model. The evidence does not prove deep
+strategy, enjoyment, understanding, retention or multi-agent superiority.
 
-The [GitHub verification workflow](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml)
-runs the actual test suite and report checks on Node.js 22. The README badge
-reports its live state.
+The [human playtest plan](runs/signal-camp/playtest-plan.md) is explicitly
+unexecuted. Generating another game still needs a tool-enabled assistant; the
+website contains no live AI backend. The optional native Claude Code adapters
+have not been executed in that host.
 
-## Limits
-
-No controlled comparison against a single assistant, human comprehension or
-enjoyment study, retention study, or untested game-engine integration is
-claimed. The browser demo needs no model backend; generating another game
-requires a tool-enabled assistant. The published case is an original fictional
-exercise, with no employer documents or customer data.
+The [GitHub checks](https://github.com/yiyiwahmo28-hue/game-design-agents/actions/workflows/ci.yml)
+and Pages deployment provide separate publication evidence. Release notes
+record the deployed revision and the post-deployment browser check.

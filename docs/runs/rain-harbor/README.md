@@ -1,7 +1,7 @@
 # Rain Harbor: a new brief, a playable prototype, and a revision
 
-[Play and inspect the recorded workflow](https://yiyiwahmo28-hue.github.io/game-design-agents/?step=brief)
-· [中文界面](https://yiyiwahmo28-hue.github.io/game-design-agents/?lang=zh&step=brief)
+[Play and inspect the recorded workflow](https://yiyiwahmo28-hue.github.io/game-design-agents/harbor.html?step=brief)
+· [中文界面](https://yiyiwahmo28-hue.github.io/game-design-agents/harbor.html?lang=zh&step=brief)
 
 This is an original fictional brief executed during preparation of v0.2.0.
 Actual delegated assistants produced the design and implementation; the
@@ -82,14 +82,14 @@ npm run verify
 npm start
 ```
 
-Open `http://127.0.0.1:4173/?step=prototype`. Switch between original and revised
+Open `http://127.0.0.1:4173/harbor.html?step=prototype`. Switch between original and revised
 rules; each switch starts a fresh run. Try a rescue, undo in the revised version,
 and check the fuel, rescued count, remaining turns, and used allowance.
 
 The [generated evidence](evidence.md) and [JSON traces](evidence.json) are produced
 by `scripts/harbor-evidence.mjs`. The browser imports the same rules module.
 `npm run simulate` regenerates evidence; `npm run verify` fails on missing or
-stale evidence. Read the [independent review](review.md) and [release verification](../../verification.md)
+stale evidence. Read the [independent review](review.md) and [release verification](../../verification-v0.2.md)
 for the actual checks, findings, repairs, and browser observations.
 
 ## Try the workflow with a fresh delivery
@@ -110,7 +110,7 @@ There is no human playtest, retention evidence, or controlled single-assistant
 comparison. Search and regression checks establish particular rule properties;
 they do not certify fun or understanding. The website is a recorded workflow
 viewer with a working game, not a live model service. The GIF uses actual browser
-captures of that viewer and prototype; [capture details](../../demo.md) explain
+captures of that viewer and prototype; [capture details](../../demo-v0.2.md) explain
 the editing and verification.
 
 ## 中文导读

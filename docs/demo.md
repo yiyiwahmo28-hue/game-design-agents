@@ -1,73 +1,72 @@
-# The homepage demo and GIFs
+# Signal Camp: homepage demo and actual recording
 
-The v0.2 homepage follows a completed **Rain Harbor** delivery through five
-steps: brief, design and handoffs, playable prototype, a follow-up request,
-and verification. The work was actually performed by delegated assistants;
-its [retained case](runs/rain-harbor/README.md) explains who did what.
-
-The page is a recorded workflow viewer with a working game. It does **not**
-call a model, stream an agent conversation, or show simulated “thinking.”
-Opening a step displays the retained work and links to its source.
+The homepage opens a playable before/after comparison. Both panels run the
+same rules module, `src/camp.mjs`, with separate original/revised inputs. The
+design view explains the purchase gate and the accepted costs. The verification
+view computes outcomes and checks them against the retained evidence.
 
 - [English GIF](assets/demo-en.gif) · [English still](assets/demo-en.png)
 - [中文 GIF](assets/demo-zh-CN.gif) · [中文静态图](assets/demo-zh-CN.png)
-- [Interactive workflow](https://yiyiwahmo28-hue.github.io/game-design-agents/)
-- [Capture sequence and actual game states](assets/demo-capture.json)
+- [Actual captured states and timings](assets/demo-capture.json)
+- [Complete case and rationale](runs/signal-camp/README.md)
 
-## What was recorded
+## The recorded sequence
 
-Both GIFs were captured from the real local browser page while operating its
-controls. The following sequence uses the same game rules as the public page:
+Each language's recording contains 13 browser frames and 32 seconds of edited
+playback. It was recorded by operating real controls, not by inserting state
+values into the page:
 
-1. Open the original fictional brief.
-2. Show the actual responsibility handoffs and artifact links.
-3. Open the original playable build. Prepare, refuel twice, then rescue the
-   ferry. The game reports ten people saved.
-4. Open the follow-up request: one undo per run, while preserving the original
-   version and economic parameters.
-5. Switch to the revised playable version, which starts fresh. Rescue the skiff:
-   fuel becomes zero, four people are saved, and one turn is used.
-6. Click undo. Fuel returns to four, rescued people to zero, and all seven
-   turns are available again. The allowance stays spent.
-7. Open the actual generated verification results and source links.
+1. Show the common initial stock and the original's waiting-only opening.
+2. Advance both panels: original waits; revision builds the beacon.
+3. Advance both again: original still waits; revision signals and evacuates six.
+4. Continue through the actual middle waits and remaining construction/missions.
+5. At turn six, compare the original's `2 people / 1 route` with revised
+   `6 / 1`. Both ledgers show income 6, spent 8, balance 1, with initial stock 3.
+6. Open the design explanation: functional partial purchase, unchanged total
+   price, disclosed deadline and one extra construction action.
+7. Change the assignment to routes. The existing rescue outcome is preserved
+   and no longer meets that objective; the comparison does not rewrite it.
+8. Reset and actually play the survey-first route. It reaches three routes on
+   turn two and completes with `2 people / 3 routes` and the same supply ledger.
+9. Open the computed outcome matrix and the accepted costs.
 
-The screenshots retain browser pixels. Replay durations are edited for
-legibility; no agent messages, gameplay outcomes, progress bars, or result
-labels are composited into the captures. This is a replay of completed work,
-not a measurement of agent execution speed.
+The PNG screenshots retain browser pixels; GIF encoding changes palette and
+playback timing only. No game results, captions, agent dialogue or progress
+indicators were composited. Captured frames are a selected walkthrough, not an
+unedited video or a measurement of generation time.
 
-## Repeat the interaction
+## Repeat it
 
-Run `npm start`, then open `http://127.0.0.1:4173/?step=brief`. Follow the steps
-above using the page controls. Add `lang=zh` to use Chinese. Tabs also support
-arrow-key navigation. Changing versions starts a fresh run; changing language
-does not change the game state.
+Run `npm start`, open `http://127.0.0.1:4173/?lang=zh`, and use the two panels.
+Original: **wait → wait → wait → bundle → signal → survey**.
+Revised rescue: **beacon → signal → wait → wait → tools → survey**.
+Revised routes: **tools → survey → wait → wait → beacon → signal**.
 
-All action costs, previews, and state changes come from `src/harbor.mjs`.
-The generated evidence executes that same module. The independent oracle in
-`scripts/review-harbor.mjs` implements the written rules separately for
-comparison.
+Each successful action ends with the same supply delivery. The income that
+arrives after an action cannot pay for that action in advance. An unavailable
+action must leave the full state unchanged.
 
-To inspect terminal undo, play all seven turns in the revised version,
-then undo the final action. The prior turn is reopened, with the allowance
-spent. See the [independent review](runs/rain-harbor/review.md) for a specific
-action sequence and observed values.
+Changing the objective re-evaluates the current outcome and preserves progress.
+Reset starts fresh. The from-start strategy button performs actual sequential
+engine actions for the selected objective; it does not represent an AI agent
+making decisions. Changing language preserves the game.
 
-## What the evidence means
+## What is demonstrated
 
-`npm test` exercises behavior and tools. `npm run audit` compares the game
-against the independent rule oracle. `npm run verify` checks that stored
-evidence matches the current model and inputs. The [release record](verification.md)
-covers actual browser operation and the checks performed.
+The original waits for a complete purchase; the revision makes a functional
+allocation possible earlier without changing supplies or listed prices. The
+right opening depends on the disclosed assignment. This is a deliberately
+small planning case; each assignment has one successful opening.
 
-Recorded model strategies and an assistant observing the screen are not human
-playtests. They do not prove that players understand the preparation tradeoff,
-prefer undo, or find the game enjoyable. Those questions remain open.
+The revision still waits in the middle, requires another construction action,
+and demands earlier understanding. No human playtest was conducted, so the
+recording does not establish player preference, comprehension or retention.
+The [release verification](verification.md) describes actual program and
+browser checks, including their scope.
 
-## Earlier example
+## Previous examples
 
+[Rain Harbor](https://yiyiwahmo28-hue.github.io/game-design-agents/harbor.html)
+remains playable with its [v0.2 recording documentation](demo-v0.2.md).
 [Lantern Expedition](https://yiyiwahmo28-hue.github.io/game-design-agents/lantern.html)
-remains playable at `/lantern.html`. Its [original case](example.md),
-[simulation evidence](evidence/simulation.md), and
-[v0.1 verification](verification-v0.1.md) remain available. The homepage GIFs
-now demonstrate the complete Rain Harbor workflow.
+also remains available. Their game engines and configurations are unchanged.

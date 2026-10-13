@@ -16,8 +16,10 @@ The starter does not call a model or generate the game itself.
 
 The [Rain Harbor execution record](runs/rain-harbor/README.md) retains an original
 brief, design handoffs, first implementation, follow-up revision, independent
-review, and reproducible evidence. The homepage replays those artifacts and
-provides the actual playable versions.
+review, and reproducible evidence. The retained `/harbor.html` page replays those artifacts and
+provides the actual playable versions. The homepage now presents the
+[Signal Camp redesign](runs/signal-camp/README.md): unchanged income and prices,
+earlier functional access, and explicit opportunity costs.
 
 Describe the intended player experience, current behavior, requested change, and what the assistant may edit or run. Existing authorization remains valid within that scope. A balance adjustment need not trigger a new approval at every role boundary.
 
